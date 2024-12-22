@@ -38,17 +38,12 @@ const Index = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow p-6">
-                <MedicalForm formData={formData} onChange={handleFormChange} />
-              </div>
-            </div>
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
-                <Summary summary={summary} onSummaryChange={setSummary} />
-              </div>
-            </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <MedicalForm formData={formData} onChange={handleFormChange} />
+          </div>
+
+          <div className="bg-white rounded-lg shadow">
+            <Summary summary={summary} onSummaryChange={setSummary} />
           </div>
         </div>
       </div>
