@@ -18,7 +18,7 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
   onChange,
 }) => (
   <div className="space-y-2 p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
-    <Label className="text-sm font-medium">{label}</Label>
+    <Label className="text-sm font-bold uppercase block text-center w-full">{label}</Label>
     <RadioGroup
       value={value}
       onValueChange={(value) => onChange(value)}
@@ -27,7 +27,7 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
       {options.map((option) => (
         <div key={option} className="flex items-center space-x-2">
           <RadioGroupItem value={option} id={`${name}-${option}`} />
-          <Label htmlFor={`${name}-${option}`}>{option}</Label>
+          <Label htmlFor={`${name}-${option}`} className="font-bold uppercase">{option}</Label>
         </div>
       ))}
     </RadioGroup>
