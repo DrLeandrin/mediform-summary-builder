@@ -1,11 +1,56 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from "react";
+import MedicalForm from "@/components/MedicalForm";
+import Summary from "@/components/Summary";
+import { Button } from "@/components/ui/button";
+import { FormData, initialFormData } from "@/lib/types";
+import { generateSummary } from "@/lib/utils";
+import { toast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [summary, setSummary] = useState("");
+
+  const handleFormChange = (newData: Partial<FormData>) => {
+    const updatedFormData = { ...formData, ...newData };
+    setFormData(updatedFormData);
+    setSummary(generateSummary(updatedFormData));
+  };
+
+  const handleReset = () => {
+    setFormData(initialFormData);
+    setSummary("");
+    toast({
+      title: "Formulário resetado",
+      description: "Todos os campos foram limpos.",
+    });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto py-8 px-4">
+        <div className="space-y-8">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-gray-900">
+              Formulário de Exame Médico
+            </h1>
+            <Button variant="outline" onClick={handleReset}>
+              Resetar Formulário
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-lg shadow p-6">
+                <MedicalForm formData={formData} onChange={handleFormChange} />
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="sticky top-8">
+                <Summary summary={summary} onSummaryChange={setSummary} />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
