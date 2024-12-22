@@ -4,7 +4,6 @@ import Summary from "@/components/Summary";
 import { Button } from "@/components/ui/button";
 import { FormData, initialFormData } from "@/lib/types";
 import { generateSummary } from "@/lib/utils";
-import { toast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -19,10 +18,6 @@ const Index = () => {
   const handleReset = () => {
     setFormData(initialFormData);
     setSummary("");
-    toast({
-      title: "Formulário resetado",
-      description: "Todos os campos foram limpos.",
-    });
   };
 
   return (
