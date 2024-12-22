@@ -27,7 +27,7 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
       {options.map((option) => (
         <div key={option} className="flex items-center space-x-2">
           <RadioGroupItem value={option} id={`${name}-${option}`} />
-          <Label htmlFor={`${name}-${option}`} className="font-bold uppercase">{option}</Label>
+          <Label htmlFor={`${name}-${option}`} className="uppercase">{option}</Label>
         </div>
       ))}
     </RadioGroup>
