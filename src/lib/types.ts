@@ -78,7 +78,7 @@ export const initialFormData: FormData = {
   sono: "",
   urina: "",
   habitoIntestinal: "",
-  intercorrencias: "Não houveram intercorrências nas ultimas 24h",
+  intercorrencias: "",
   acompanhante: "",
   dispositivos: [],
   sinaisVitais: {
