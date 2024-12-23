@@ -22,8 +22,7 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
         options={[
           "Eupneico",
           "Taquipneico",
-          "Bradipneico",
-          "Dispneico",
+          "Bradipneico"
         ]}
         value={formData.freqRespiratoria}
         label="Frequência Respiratória"
@@ -35,7 +34,8 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
         options={[
           "Tórax simétrico",
           "Tórax assimétrico",
-          "Uso de musculatura acessória",
+          "Tiragem intercostal",
+          "Uso de musculatura acessória"
         ]}
         value={formData.torax}
         label="Tórax"
@@ -45,12 +45,13 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
       <FormRadioGroup
         name="auscultaPulmonar"
         options={[
-          "MV presentes bilateralmente",
-          "MV diminuídos em bases",
-          "MV diminuídos difusamente",
-          "Roncos difusos",
-          "Sibilos difusos",
-          "Crepitações em bases",
+          "Murmúrio vesicular presente bilateralmente sem ruídos adventícios",
+          "Murmúrio vesicular diminuído",
+          "Roncos",
+          "Sibilos",
+          "Estertores finos",
+          "Estertores grossos",
+          "Ausência de murmúrio vesicular"
         ]}
         value={formData.auscultaPulmonar}
         label="Ausculta Pulmonar"

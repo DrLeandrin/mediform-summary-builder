@@ -21,7 +21,7 @@ const AvaliacaoFisica: React.FC<AvaliacaoFisicaProps> = ({
         name="perfusaoPeriferica"
         options={[
           "Perfusão periférica normal",
-          "Perfusão periférica diminuída",
+          "Perfusão periférica diminuída"
         ]}
         value={formData.perfusaoPeriferica}
         label="Perfusão Periférica"
@@ -33,7 +33,7 @@ const AvaliacaoFisica: React.FC<AvaliacaoFisicaProps> = ({
         options={[
           "Acianótico",
           "Cianose central",
-          "Cianose periférica",
+          "Cianose periférica"
         ]}
         value={formData.cianose}
         label="Cianose"
@@ -47,7 +47,7 @@ const AvaliacaoFisica: React.FC<AvaliacaoFisicaProps> = ({
           "Ictérico 1+/4+",
           "Ictérico 2+/4+",
           "Ictérico 3+/4+",
-          "Ictérico 4+/4+",
+          "Ictérico 4+/4+"
         ]}
         value={formData.ictericia}
         label="Icterícia"
@@ -61,7 +61,7 @@ const AvaliacaoFisica: React.FC<AvaliacaoFisicaProps> = ({
           "Descorado 1+/4+",
           "Descorado 2+/4+",
           "Descorado 3+/4+",
-          "Descorado 4+/4+",
+          "Descorado 4+/4+"
         ]}
         value={formData.palidez}
         label="Palidez"
@@ -75,7 +75,7 @@ const AvaliacaoFisica: React.FC<AvaliacaoFisicaProps> = ({
           "Desidratado 1+/4+",
           "Desidratado 2+/4+",
           "Desidratado 3+/4+",
-          "Desidratado 4+/4+",
+          "Desidratado 4+/4+"
         ]}
         value={formData.hidratacao}
         label="Hidratação"

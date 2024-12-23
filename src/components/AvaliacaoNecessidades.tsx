@@ -21,9 +21,10 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
         name="estadoNutricional"
         options={[
           "Eutrófico",
-          "Desnutrido",
           "Sobrepeso",
-          "Obeso",
+          "Obesidade",
+          "Magreza leve",
+          "Magreza severa"
         ]}
         value={formData.estadoNutricional}
         label="Estado Nutricional"
@@ -33,10 +34,10 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
       <FormRadioGroup
         name="mobilidade"
         options={[
-          "Deambula",
-          "Deambula com auxílio",
-          "Acamado",
+          "Deambulando normalmente",
+          "Deambulando com dificuldade",
           "Restrito ao leito",
+          "Imobilidade completa"
         ]}
         value={formData.mobilidade}
         label="Mobilidade"
@@ -46,10 +47,9 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
       <FormRadioGroup
         name="aceitacaoDieta"
         options={[
-          "Boa aceitação",
-          "Regular aceitação",
-          "Baixa aceitação",
-          "Não se alimenta",
+          "Boa aceitação da dieta",
+          "Não aceitou dieta",
+          "Efeitos indesejáveis à diéta"
         ]}
         value={formData.aceitacaoDieta}
         label="Aceitação da Dieta"
@@ -59,10 +59,8 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
       <FormRadioGroup
         name="sono"
         options={[
-          "Sono preservado",
-          "Insônia inicial",
-          "Insônia terminal",
-          "Sono fragmentado",
+          "Nega alterações do sono",
+          "Refere não conseguir dormir"
         ]}
         value={formData.sono}
         label="Sono"
@@ -72,10 +70,10 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
       <FormRadioGroup
         name="urina"
         options={[
-          "Diurese presente",
-          "Oligúria",
-          "Anúria",
-          "Poliúria",
+          "Nega alteração do Hábito Urinário",
+          "Refere disuria",
+          "Refere oliguria",
+          "Refere anuria"
         ]}
         value={formData.urina}
         label="Urina"
@@ -85,13 +83,36 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
       <FormRadioGroup
         name="habitoIntestinal"
         options={[
-          "Regular",
-          "Constipação",
-          "Diarreia",
+          "Nega alterações do Hábito intestinal",
+          "Não evacuou nas ultimas 24h",
+          "Não evacuou nas ultimas 48h",
+          "Não evacuou nas ultimas 72h",
+          "Refere diarreia."
         ]}
         value={formData.habitoIntestinal}
         label="Hábito Intestinal"
         onChange={(value) => handleRadioChange("habitoIntestinal", value)}
+      />
+
+      <FormRadioGroup
+        name="intercorrencias"
+        options={[
+          "Não houveram intercorrências nas ultimas 24h"
+        ]}
+        value={formData.intercorrencias}
+        label="Intercorrências"
+        onChange={(value) => handleRadioChange("intercorrencias", value)}
+      />
+
+      <FormRadioGroup
+        name="acompanhante"
+        options={[
+          "Com acompanhante",
+          "Sem acompanhante"
+        ]}
+        value={formData.acompanhante}
+        label="Acompanhante"
+        onChange={(value) => handleRadioChange("acompanhante", value)}
       />
     </div>
   );

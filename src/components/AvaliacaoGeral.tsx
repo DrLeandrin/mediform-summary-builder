@@ -16,7 +16,11 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <FormRadioGroup
         name="estadoGeral"
-        options={["Bom estado geral", "Regular estado geral", "Mau estado geral"]}
+        options={[
+          "Bom estado geral",
+          "Regular estado geral",
+          "Mau estado geral"
+        ]}
         value={formData.estadoGeral}
         label="Estado Geral"
         onChange={(value) => handleRadioChange("estadoGeral", value)}
@@ -31,7 +35,7 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
           "Desorientado em tempo e espaço",
           "Sonolento",
           "Torporoso",
-          "Comatoso",
+          "Comatoso"
         ]}
         value={formData.consciencia}
         label="Nível de Consciência e Orientação"
@@ -40,7 +44,11 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
 
       <FormRadioGroup
         name="temperatura"
-        options={["Normotermia", "Hipotermia", "Febre"]}
+        options={[
+          "Normotermia",
+          "Hipotermia",
+          "Febre"
+        ]}
         value={formData.temperatura}
         label="Temperatura"
         onChange={(value) => handleRadioChange("temperatura", value)}

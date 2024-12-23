@@ -20,11 +20,9 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="auscultaCardiaca"
         options={[
-          "BNF 2T sem sopros",
-          "BNF 2T com sopro",
-          "Arritmia",
-          "Taquicardia",
-          "Bradicardia",
+          "2 bulhas rítmicas normofonéticas, sem sopro",
+          "2 bulhas arrítmicas",
+          "Bulhas hipofonéticas"
         ]}
         value={formData.auscultaCardiaca}
         label="Ausculta Cardíaca"
@@ -34,10 +32,9 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomeInspecao"
         options={[
-          "Plano",
-          "Globoso",
-          "Distendido",
-          "Escavado",
+          "Abdome Plano",
+          "Abdome Globoso",
+          "Abdome Escavado"
         ]}
         value={formData.abdomeInspecao}
         label="Abdome Inspeção"
@@ -47,10 +44,10 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomePalpacao"
         options={[
-          "Flácido",
-          "Tenso",
-          "Doloroso à palpação superficial",
-          "Doloroso à palpação profunda",
+          "Abdome indolor à palpação",
+          "Abdome doloroso à palpação superficial",
+          "Abdome doloroso à palpação profunda",
+          "Abdome com presença de massa palpável"
         ]}
         value={formData.abdomePalpacao}
         label="Abdome Palpação"
@@ -60,10 +57,10 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomeAusculta"
         options={[
-          "RHA presentes",
-          "RHA aumentados",
-          "RHA diminuídos",
-          "RHA ausentes",
+          "Ausculta abd: RHA presentes normofônicos",
+          "Ausculta abd: RHA hipoativos",
+          "Ausculta abd: RHA hiperativos",
+          "Ausculta abd: Ausência de RHA"
         ]}
         value={formData.abdomeAusculta}
         label="Abdome Ausculta"

@@ -22,7 +22,7 @@ const AvaliacaoNeurologica: React.FC<AvaliacaoNeurologicaProps> = ({
         options={[
           "Colaborativo",
           "Parcialmente colaborativo",
-          "Não colaborativo",
+          "Não colaborativo"
         ]}
         value={formData.colaboracao}
         label="Colaboração"
@@ -31,7 +31,10 @@ const AvaliacaoNeurologica: React.FC<AvaliacaoNeurologicaProps> = ({
 
       <FormRadioGroup
         name="contato"
-        options={["Contactuante", "Não contactuante"]}
+        options={[
+          "Contactuante",
+          "Não contactuante"
+        ]}
         value={formData.contato}
         label="Contato"
         onChange={(value) => handleRadioChange("contato", value)}
@@ -42,7 +45,7 @@ const AvaliacaoNeurologica: React.FC<AvaliacaoNeurologicaProps> = ({
         options={[
           "Fala Clara e compreensível",
           "Disártrico",
-          "Afásico",
+          "Afásico"
         ]}
         value={formData.fala}
         label="Fala"
@@ -55,7 +58,7 @@ const AvaliacaoNeurologica: React.FC<AvaliacaoNeurologicaProps> = ({
           "Pensamento Lógico e coerente",
           "Pensamento desorganizado",
           "Ideias delirantes",
-          "Ideação suicida",
+          "Ideação suicida"
         ]}
         value={formData.pensamento}
         label="Pensamento"
@@ -70,11 +73,23 @@ const AvaliacaoNeurologica: React.FC<AvaliacaoNeurologicaProps> = ({
           "Ansioso",
           "Irritável",
           "Apático",
-          "Labilidade emocional",
+          "Labilidade emocional"
         ]}
         value={formData.humorAfeto}
         label="Humor e Afeto"
         onChange={(value) => handleRadioChange("humorAfeto", value)}
+      />
+
+      <FormRadioGroup
+        name="aceitacaoMedicamentos"
+        options={[
+          "Boa aceitação Medicamentosa",
+          "Negou Medicações",
+          "Efeitos indesejáveis à medicação"
+        ]}
+        value={formData.aceitacaoMedicamentos}
+        label="Aceitação Medicamentos"
+        onChange={(value) => handleRadioChange("aceitacaoMedicamentos", value)}
       />
     </div>
   );
