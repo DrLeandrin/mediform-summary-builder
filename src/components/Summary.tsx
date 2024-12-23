@@ -6,9 +6,10 @@ import { toast } from "@/components/ui/use-toast";
 interface SummaryProps {
   summary: string;
   onSummaryChange: (value: string) => void;
+  onReset: () => void;
 }
 
-const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange }) => {
+const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange, onReset }) => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(summary);
@@ -26,7 +27,7 @@ const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange }) => {
   };
 
   return (
-    <div className="w-full space-y-4 p-4 bg-white rounded-lg shadow">
+    <div className="w-full space-y-4 p-4">
       <h2 className="text-xl font-semibold text-gray-800">Sumário</h2>
       <Textarea
         value={summary}
@@ -34,9 +35,14 @@ const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange }) => {
         className="min-h-[200px] w-full p-2"
         placeholder="O sumário será gerado automaticamente conforme você preenche o formulário..."
       />
-      <Button onClick={handleCopy} className="w-full">
-        Copiar Sumário
-      </Button>
+      <div className="flex gap-4 justify-end">
+        <Button variant="outline" onClick={onReset}>
+          Resetar Formulário
+        </Button>
+        <Button onClick={handleCopy}>
+          Copiar Sumário
+        </Button>
+      </div>
     </div>
   );
 };
