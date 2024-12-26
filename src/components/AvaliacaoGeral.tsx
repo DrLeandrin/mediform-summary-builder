@@ -45,9 +45,9 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
       <FormRadioGroup
         name="temperatura"
         options={[
-          "Normotermia",
-          "Hipotermia",
-          "Febre"
+          "Normotermico",
+          "Hipotermico",
+          "Febrio"
         ]}
         value={formData.temperatura}
         label="Temperatura"
