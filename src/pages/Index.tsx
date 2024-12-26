@@ -25,7 +25,7 @@ const Index = () => {
     const firstOptions: Partial<FormData> = {
       estadoGeral: "Bom estado geral",
       consciencia: "Lúcido e orientado",
-      temperatura: "Normotermia",
+      temperatura: "Normotermico",
       freqRespiratoria: "Eupneico",
       torax: "Tórax simétrico",
       auscultaPulmonar: "Murmúrio vesicular presente bilateralmente sem ruídos adventícios",
