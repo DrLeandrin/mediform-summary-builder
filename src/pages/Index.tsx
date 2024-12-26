@@ -62,8 +62,8 @@ const Index = () => {
         <div className="space-y-8">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold">
-                Formulário de Exame Médico
+              <h1 className="text-2xl font-bold text-center">
+                Monta Evolução - Avelis.com.br
               </h1>
               <ThemeToggle />
             </div>
