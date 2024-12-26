@@ -34,11 +34,11 @@ export function generateSummary(data: FormData): string {
     data.torax,
     data.auscultaPulmonar
   ].filter(Boolean).join(", ");
-  if (linha2) summary += linha2 + ".\n";
+  if (linha2) summary += "AP: " + linha2 + ".\n";
 
   // Terceira linha
   if (data.auscultaCardiaca) {
-    summary += data.auscultaCardiaca + ".\n";
+    summary += "AC: " + data.auscultaCardiaca + ".\n";
   }
 
   // Quarta linha
@@ -47,7 +47,7 @@ export function generateSummary(data: FormData): string {
     data.abdomePalpacao,
     data.abdomeAusculta
   ].filter(Boolean).join(", ");
-  if (linha4) summary += linha4 + ".\n";
+  if (linha4) summary += "Abd: " + linha4 + ".\n";
 
   // Quinta linha
   const linha5 = [
