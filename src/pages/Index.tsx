@@ -4,6 +4,7 @@ import Summary from "@/components/Summary";
 import { FormData, initialFormData } from "@/lib/types";
 import { generateSummary } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -56,26 +57,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto py-8 px-4">
         <div className="space-y-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">
-              Formulário de Exame Médico
-            </h1>
+            <div className="flex items-center gap-4">
+              <h1 className="text-2xl font-bold">
+                Formulário de Exame Médico
+              </h1>
+              <ThemeToggle />
+            </div>
             <Button 
               onClick={handleSelectFirstOptions}
-              className="bg-blue-500 hover:bg-blue-600"
+              variant="default"
             >
               Padrão
             </Button>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-card text-card-foreground rounded-lg shadow p-6">
             <MedicalForm formData={formData} onChange={handleFormChange} />
           </div>
 
-          <div className="bg-white rounded-lg shadow">
+          <div className="bg-card text-card-foreground rounded-lg shadow">
             <Summary 
               summary={summary} 
               onSummaryChange={setSummary} 
