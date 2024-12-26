@@ -13,7 +13,7 @@ const FormDevicesGroup: React.FC<FormDevicesGroupProps> = ({
   selectedDevices,
   onChange,
 }) => (
-  <div className="space-y-2 p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
+  <div className="space-y-2 p-4 border rounded-lg bg-card text-card-foreground">
     <Label className="text-lg font-medium">Dispositivos</Label>
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {devices.map((device) => (
@@ -28,7 +28,7 @@ const FormDevicesGroup: React.FC<FormDevicesGroupProps> = ({
               onChange(newDevices);
             }}
           />
-          <Label htmlFor={device}>{device}</Label>
+          <Label htmlFor={device} className="text-foreground">{device}</Label>
         </div>
       ))}
     </div>

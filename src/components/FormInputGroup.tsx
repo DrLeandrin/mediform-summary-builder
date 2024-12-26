@@ -36,7 +36,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   };
 
   return (
-    <div className="space-y-4 p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
+    <div className="space-y-4 p-4 border rounded-lg bg-card text-card-foreground">
       <Label className="text-lg font-medium">{title}</Label>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.entries(fields).map(([key, value]) => {
@@ -46,7 +46,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
           if (isVital && sliderConfig) {
             return (
               <div key={key} className="space-y-2">
-                <Label htmlFor={key}>{sliderConfig.label}</Label>
+                <Label htmlFor={key} className="text-foreground">{sliderConfig.label}</Label>
                 <div className="flex items-center space-x-4">
                   <div className="flex-grow">
                     <Slider
@@ -63,7 +63,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
                       type="number"
                       value={value}
                       onChange={(e) => onChange(key, e.target.value)}
-                      className="text-right"
+                      className="text-right bg-background text-foreground"
                       min={sliderConfig.min}
                       max={sliderConfig.max}
                     />
@@ -75,11 +75,12 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
 
           return (
             <div key={key} className="space-y-2">
-              <Label htmlFor={key}>{key.toUpperCase()}</Label>
+              <Label htmlFor={key} className="text-foreground">{key.toUpperCase()}</Label>
               <Input
                 id={key}
                 value={value}
                 onChange={(e) => onChange(key, e.target.value)}
+                className="bg-background text-foreground"
               />
             </div>
           );
