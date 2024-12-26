@@ -16,22 +16,29 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
   value,
   label,
   onChange,
-}) => (
-  <div className="space-y-2 p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
-    <Label className="text-sm font-bold uppercase block text-center w-full">{label}</Label>
-    <RadioGroup
-      value={value}
-      onValueChange={(value) => onChange(value)}
-      className="grid grid-cols-1 gap-2"
-    >
-      {options.map((option) => (
-        <div key={option} className="flex items-center space-x-2">
-          <RadioGroupItem value={option} id={`${name}-${option}`} />
-          <Label htmlFor={`${name}-${option}`} className="uppercase">{option}</Label>
-        </div>
-      ))}
-    </RadioGroup>
-  </div>
-);
+}) => {
+  return (
+    <div className="p-4 rounded-lg border bg-card text-card-foreground">
+      <h3 className="text-center font-bold uppercase mb-4">{label}</h3>
+      <RadioGroup
+        value={value}
+        onValueChange={onChange}
+        className="space-y-2"
+      >
+        {options.map((option) => (
+          <div key={option} className="flex items-center space-x-2">
+            <RadioGroupItem value={option} id={`${name}-${option}`} />
+            <Label
+              htmlFor={`${name}-${option}`}
+              className="uppercase font-normal cursor-pointer"
+            >
+              {option}
+            </Label>
+          </div>
+        ))}
+      </RadioGroup>
+    </div>
+  );
+};
 
 export default FormRadioGroup;
