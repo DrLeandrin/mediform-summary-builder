@@ -32,9 +32,9 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomeInspecao"
         options={[
-          "Abdome Plano",
-          "Abdome Globoso",
-          "Abdome Escavado"
+          "Plano",
+          "Globoso",
+          "Escavado"
         ]}
         value={formData.abdomeInspecao}
         label="Abdome Inspeção"
@@ -44,10 +44,10 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomePalpacao"
         options={[
-          "Abdome indolor à palpação",
-          "Abdome doloroso à palpação superficial",
-          "Abdome doloroso à palpação profunda",
-          "Abdome com presença de massa palpável"
+          "indolor à palpação",
+          "doloroso à palpação superficial",
+          "doloroso à palpação profunda",
+          "presença de massa palpável"
         ]}
         value={formData.abdomePalpacao}
         label="Abdome Palpação"
@@ -57,10 +57,10 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
       <FormRadioGroup
         name="abdomeAusculta"
         options={[
-          "Ausculta abd: RHA presentes normofônicos",
-          "Ausculta abd: RHA hipoativos",
-          "Ausculta abd: RHA hiperativos",
-          "Ausculta abd: Ausência de RHA"
+          "RHA presentes normofônicos",
+          "RHA hipoativos",
+          "RHA hiperativos",
+          "Ausência de RHA"
         ]}
         value={formData.abdomeAusculta}
         label="Abdome Ausculta"
