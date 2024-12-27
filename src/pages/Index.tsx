@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import PatientTabHeader from "@/components/PatientTabHeader";
+import { generateSummary } from "@/lib/utils";
 
 interface PatientTab {
   id: string;
