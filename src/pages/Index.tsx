@@ -6,21 +6,26 @@ import { generateSummary } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus } from "lucide-react";
+import { Plus, Edit2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
+import { Input } from "@/components/ui/input";
 
 interface PatientTab {
   id: string;
+  name: string;
   formData: FormData;
   summary: string;
+  isEditing: boolean;
 }
 
 const Index = () => {
   const [tabs, setTabs] = useState<PatientTab[]>([
     {
       id: "1",
+      name: "Paciente 1",
       formData: initialFormData,
       summary: "",
+      isEditing: false,
     },
   ]);
   const [activeTab, setActiveTab] = useState("1");
@@ -65,14 +70,36 @@ const Index = () => {
       ...prevTabs,
       {
         id: newId,
+        name: `Paciente ${newId}`,
         formData: initialFormData,
         summary: "",
+        isEditing: false,
       },
     ]);
     setActiveTab(newId);
     toast({
       title: "Nova aba criada",
       description: "Uma nova aba foi adicionada para um novo paciente.",
+    });
+  };
+
+  const toggleEditTabName = (tabId: string) => {
+    setTabs((prevTabs) =>
+      prevTabs.map((tab) =>
+        tab.id === tabId ? { ...tab, isEditing: !tab.isEditing } : tab
+      )
+    );
+  };
+
+  const handleTabNameChange = (tabId: string, newName: string) => {
+    setTabs((prevTabs) =>
+      prevTabs.map((tab) =>
+        tab.id === tabId ? { ...tab, name: newName, isEditing: false } : tab
+      )
+    );
+    toast({
+      title: "Nome alterado",
+      description: "O nome da aba foi atualizado com sucesso.",
     });
   };
 
@@ -128,8 +155,36 @@ const Index = () => {
             <div className="flex items-center gap-2 mb-4">
               <TabsList>
                 {tabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id}>
-                    Paciente {tab.id}
+                  <TabsTrigger key={tab.id} value={tab.id} className="relative">
+                    {tab.isEditing ? (
+                      <Input
+                        className="w-24 h-6 px-1 py-0"
+                        value={tab.name}
+                        onChange={(e) => handleTabNameChange(tab.id, e.target.value)}
+                        onBlur={() => toggleEditTabName(tab.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleTabNameChange(tab.id, (e.target as HTMLInputElement).value);
+                          }
+                        }}
+                        autoFocus
+                      />
+                    ) : (
+                      <>
+                        {tab.name}
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-4 w-4 absolute right-1 opacity-50 hover:opacity-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleEditTabName(tab.id);
+                          }}
+                        >
+                          <Edit2 className="h-3 w-3" />
+                        </Button>
+                      </>
+                    )}
                   </TabsTrigger>
                 ))}
               </TabsList>
