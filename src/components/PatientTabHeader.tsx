@@ -39,7 +39,7 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
   };
 
   return (
-    <TabsTrigger value={id} className="relative">
+    <TabsTrigger value={id} className="relative group min-w-[100px] px-4">
       {isEditing ? (
         <Input
           className="w-24 h-6 px-1 py-0"
@@ -51,11 +51,11 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
         />
       ) : (
         <>
-          {name}
+          <span className="truncate">{name}</span>
           <Button
             variant="ghost"
             size="icon"
-            className="h-4 w-4 absolute right-1 opacity-50 hover:opacity-100"
+            className="h-4 w-4 absolute right-1 opacity-0 group-hover:opacity-100 transition-opacity"
             onClick={(e) => {
               e.stopPropagation();
               onToggleEdit(id);
