@@ -8,6 +8,7 @@ import AvaliacaoCardioAbdominal from "./AvaliacaoCardioAbdominal";
 import AvaliacaoNeurologica from "./AvaliacaoNeurologica";
 import AvaliacaoFisica from "./AvaliacaoFisica";
 import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
+import { Textarea } from "./ui/textarea";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -17,6 +18,16 @@ interface MedicalFormProps {
 const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
   return (
     <form className="space-y-8">
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold text-foreground">Queixas</h2>
+        <Textarea
+          value={formData.queixas}
+          onChange={(e) => onChange({ queixas: e.target.value })}
+          placeholder="Digite as queixas do paciente..."
+          className="w-full"
+        />
+      </div>
+
       <AvaliacaoGeral formData={formData} onChange={onChange} />
       <AvaliacaoRespiratoria formData={formData} onChange={onChange} />
       <AvaliacaoCardioAbdominal formData={formData} onChange={onChange} />

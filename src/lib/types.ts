@@ -1,4 +1,5 @@
 export type FormData = {
+  queixas: string;
   estadoGeral: string;
   consciencia: string;
   temperatura: string;
@@ -51,6 +52,7 @@ export type FormData = {
 };
 
 export const initialFormData: FormData = {
+  queixas: "",
   estadoGeral: "",
   consciencia: "",
   temperatura: "",

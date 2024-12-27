@@ -24,7 +24,8 @@ export function generateSummary(data: FormData): string {
     data.pensamento,
     data.humorAfeto,
     data.perfusaoPeriferica,
-    data.acompanhante
+    data.acompanhante,
+    data.queixas
   ].filter(Boolean).join(", ");
   if (linha1) summary += linha1 + ".\n";
 
