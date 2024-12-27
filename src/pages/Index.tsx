@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import MedicalForm from "@/components/MedicalForm";
 import Summary from "@/components/Summary";
 import { FormData, initialFormData } from "@/lib/types";
-import { generateSummary } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit2 } from "lucide-react";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+import { Plus } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
+import PatientTabHeader from "@/components/PatientTabHeader";
 
 interface PatientTab {
   id: string;
@@ -92,50 +91,13 @@ const Index = () => {
   };
 
   const handleTabNameChange = (tabId: string, newName: string) => {
+    if (!newName.trim()) return;
+    
     setTabs((prevTabs) =>
       prevTabs.map((tab) =>
         tab.id === tabId ? { ...tab, name: newName, isEditing: false } : tab
       )
     );
-    toast({
-      title: "Nome alterado",
-      description: "O nome da aba foi atualizado com sucesso.",
-    });
-  };
-
-  const handleSelectFirstOptions = (tabId: string) => {
-    const firstOptions: Partial<FormData> = {
-      estadoGeral: "Bom estado geral",
-      consciencia: "Lúcido e orientado",
-      temperatura: "Normotermico",
-      freqRespiratoria: "Eupneico",
-      torax: "Tórax simétrico",
-      auscultaPulmonar: "Murmúrio vesicular presente bilateralmente sem ruídos adventícios",
-      auscultaCardiaca: "2 bulhas rítmicas normofonéticas, sem sopro",
-      abdomeInspecao: "Plano",
-      abdomePalpacao: "indolor à palpação",
-      abdomeAusculta: "RHA presentes normofônicos",
-      colaboracao: "Colaborativo",
-      contato: "Contactuante",
-      fala: "Fala Clara e compreensível",
-      pensamento: "Pensamento Lógico e coerente",
-      humorAfeto: "Eutímico",
-      aceitacaoMedicamentos: "Boa aceitação Medicamentosa",
-      perfusaoPeriferica: "Perfusão periférica normal",
-      cianose: "Acianótico",
-      ictericia: "Anictérico",
-      palidez: "Corado",
-      hidratacao: "Hidratado",
-      estadoNutricional: "Eutrófico",
-      mobilidade: "Deambulando normalmente",
-      aceitacaoDieta: "Boa aceitação da dieta",
-      sono: "Nega alterações do sono",
-      urina: "Nega alteração do Hábito Urinário",
-      habitoIntestinal: "Nega alterações do Hábito intestinal",
-      intercorrencias: "Não houveram intercorrências nas ultimas 24h",
-      acompanhante: "Com acompanhante"
-    };
-    handleFormChange(tabId, firstOptions);
   };
 
   return (
@@ -155,37 +117,14 @@ const Index = () => {
             <div className="flex items-center gap-2 mb-4">
               <TabsList>
                 {tabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id} className="relative">
-                    {tab.isEditing ? (
-                      <Input
-                        className="w-24 h-6 px-1 py-0"
-                        value={tab.name}
-                        onChange={(e) => handleTabNameChange(tab.id, e.target.value)}
-                        onBlur={() => toggleEditTabName(tab.id)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            handleTabNameChange(tab.id, (e.target as HTMLInputElement).value);
-                          }
-                        }}
-                        autoFocus
-                      />
-                    ) : (
-                      <>
-                        {tab.name}
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-4 w-4 absolute right-1 opacity-50 hover:opacity-100"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleEditTabName(tab.id);
-                          }}
-                        >
-                          <Edit2 className="h-3 w-3" />
-                        </Button>
-                      </>
-                    )}
-                  </TabsTrigger>
+                  <PatientTabHeader
+                    key={tab.id}
+                    id={tab.id}
+                    name={tab.name}
+                    isEditing={tab.isEditing}
+                    onNameChange={handleTabNameChange}
+                    onToggleEdit={toggleEditTabName}
+                  />
                 ))}
               </TabsList>
               <Button
@@ -201,15 +140,6 @@ const Index = () => {
             {tabs.map((tab) => (
               <TabsContent key={tab.id} value={tab.id}>
                 <div className="space-y-8">
-                  <div className="flex justify-end">
-                    <Button
-                      onClick={() => handleSelectFirstOptions(tab.id)}
-                      variant="default"
-                    >
-                      Padrão
-                    </Button>
-                  </div>
-
                   <div className="bg-card text-card-foreground rounded-lg shadow p-6">
                     <MedicalForm
                       formData={tab.formData}
