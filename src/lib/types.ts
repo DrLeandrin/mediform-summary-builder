@@ -36,6 +36,7 @@ export type FormData = {
     satO2: string;
     pa: string;
     dextro: string;
+    temperatura: string;
   };
   laboratoriais: {
     eri: string;
@@ -89,6 +90,7 @@ export const initialFormData: FormData = {
     satO2: "",
     pa: "",
     dextro: "",
+    temperatura: "",
   },
   laboratoriais: {
     eri: "",

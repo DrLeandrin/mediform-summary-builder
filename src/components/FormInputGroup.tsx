@@ -26,13 +26,15 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
         return { min: 0, max: 600, step: 1, label: 'Dextro (mg/dL)' };
       case 'pa':
         return { min: 0, max: 300, step: 1, label: 'PA (mmHg)' };
+      case 'temperatura':
+        return { min: 35, max: 42, step: 0.1, label: 'Temperatura (°C)' };
       default:
         return null;
     }
   };
 
   const isVitalSign = (key: string) => {
-    return ['fr', 'fc', 'satO2', 'pa', 'dextro'].includes(key);
+    return ['fr', 'fc', 'satO2', 'pa', 'dextro', 'temperatura'].includes(key);
   };
 
   return (
@@ -54,7 +56,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
                       min={sliderConfig.min}
                       max={sliderConfig.max}
                       step={sliderConfig.step}
-                      value={[Number(value) || 0]}
+                      value={[Number(value) || sliderConfig.min]}
                       onValueChange={(vals) => onChange(key, vals[0].toString())}
                     />
                   </div>
@@ -66,6 +68,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
                       className="text-right bg-background text-foreground"
                       min={sliderConfig.min}
                       max={sliderConfig.max}
+                      step={sliderConfig.step}
                     />
                   </div>
                 </div>
