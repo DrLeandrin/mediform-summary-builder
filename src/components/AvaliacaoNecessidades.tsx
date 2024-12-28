@@ -1,6 +1,7 @@
 import React from "react";
 import FormRadioGroup from "./FormRadioGroup";
 import { FormData } from "@/lib/types";
+import { Textarea } from "./ui/textarea";
 
 interface AvaliacaoNecessidadesProps {
   formData: FormData;
@@ -13,6 +14,10 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
 }) => {
   const handleRadioChange = (name: keyof FormData, value: string) => {
     onChange({ [name]: value });
+  };
+
+  const handleCustomIntercorrenciasChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange({ intercorrencias: e.target.value });
   };
 
   return (
@@ -94,15 +99,28 @@ const AvaliacaoNecessidades: React.FC<AvaliacaoNecessidadesProps> = ({
         onChange={(value) => handleRadioChange("habitoIntestinal", value)}
       />
 
-      <FormRadioGroup
-        name="intercorrencias"
-        options={[
-          "Não houveram intercorrências nas ultimas 24h"
-        ]}
-        value={formData.intercorrencias}
-        label="Intercorrências"
-        onChange={(value) => handleRadioChange("intercorrencias", value)}
-      />
+      <div className="p-4 rounded-lg border bg-card text-card-foreground">
+        <h3 className="text-center font-bold uppercase mb-4">Intercorrências</h3>
+        <div className="space-y-4">
+          <FormRadioGroup
+            name="intercorrencias"
+            options={[
+              "Não houveram intercorrências nas ultimas 24h"
+            ]}
+            value={formData.intercorrencias}
+            label=""
+            onChange={(value) => handleRadioChange("intercorrencias", value)}
+          />
+          <div className="mt-2">
+            <Textarea
+              placeholder="Digite outras intercorrências..."
+              value={formData.intercorrencias !== "Não houveram intercorrências nas ultimas 24h" ? formData.intercorrencias : ""}
+              onChange={handleCustomIntercorrenciasChange}
+              className="w-full"
+            />
+          </div>
+        </div>
+      </div>
 
       <FormRadioGroup
         name="acompanhante"
