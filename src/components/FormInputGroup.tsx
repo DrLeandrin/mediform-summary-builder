@@ -22,10 +22,12 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
         return { min: 40, max: 200, step: 1, label: 'FC (bpm)' };
       case 'satO2':
         return { min: 0, max: 100, step: 1, label: 'SatO2 (%)' };
+      case 'pas':
+        return { min: 40, max: 250, step: 1, label: 'PAS (mmHg)' };
+      case 'pad':
+        return { min: 0, max: 150, step: 1, label: 'PAD (mmHg)' };
       case 'dextro':
         return { min: 0, max: 600, step: 1, label: 'Dextro (mg/dL)' };
-      case 'pa':
-        return { min: 0, max: 300, step: 1, label: 'PA (mmHg)' };
       case 'temperatura':
         return { min: 35, max: 42, step: 0.1, label: 'Temperatura (°C)' };
       default:
@@ -34,7 +36,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   };
 
   const isVitalSign = (key: string) => {
-    return ['fr', 'fc', 'satO2', 'pa', 'dextro', 'temperatura'].includes(key);
+    return ['fr', 'fc', 'satO2', 'pas', 'pad', 'dextro', 'temperatura'].includes(key);
   };
 
   return (

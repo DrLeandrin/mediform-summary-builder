@@ -34,7 +34,8 @@ export type FormData = {
     fr: string;
     fc: string;
     satO2: string;
-    pa: string;
+    pas: string;
+    pad: string;
     dextro: string;
     temperatura: string;
   };
@@ -88,7 +89,8 @@ export const initialFormData: FormData = {
     fr: "",
     fc: "",
     satO2: "",
-    pa: "",
+    pas: "",
+    pad: "",
     dextro: "",
     temperatura: "",
   },

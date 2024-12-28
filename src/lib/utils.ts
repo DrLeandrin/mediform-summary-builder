@@ -67,9 +67,16 @@ export function generateSummary(data: FormData): string {
   }
 
   // Sétima linha - Sinais vitais
-  const sinaisVitais = Object.entries(data.sinaisVitais)
-    .filter(([_, value]) => value)
-    .map(([key, value]) => `${key.toUpperCase()}: ${value}`);
+  const sinaisVitais = [];
+  if (data.sinaisVitais.fr) sinaisVitais.push(`FR: ${data.sinaisVitais.fr}`);
+  if (data.sinaisVitais.fc) sinaisVitais.push(`FC: ${data.sinaisVitais.fc}`);
+  if (data.sinaisVitais.satO2) sinaisVitais.push(`SatO2: ${data.sinaisVitais.satO2}`);
+  if (data.sinaisVitais.pas && data.sinaisVitais.pad) {
+    sinaisVitais.push(`PA: ${data.sinaisVitais.pas}x${data.sinaisVitais.pad}`);
+  }
+  if (data.sinaisVitais.dextro) sinaisVitais.push(`Dextro: ${data.sinaisVitais.dextro}`);
+  if (data.sinaisVitais.temperatura) sinaisVitais.push(`Temperatura: ${data.sinaisVitais.temperatura}`);
+  
   if (sinaisVitais.length > 0) {
     summary += "Sinais vitais: " + sinaisVitais.join(", ") + ".\n";
   }
