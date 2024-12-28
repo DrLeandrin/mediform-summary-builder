@@ -16,6 +16,12 @@ interface MedicalFormProps {
 }
 
 const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
+  const handleRemoveLaboratorial = (key: string) => {
+    const newLaboratoriais = { ...formData.laboratoriais };
+    delete newLaboratoriais[key];
+    onChange({ laboratoriais: newLaboratoriais });
+  };
+
   return (
     <form className="space-y-8">
       <div className="space-y-4">
@@ -81,6 +87,8 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
             },
           })
         }
+        onRemove={handleRemoveLaboratorial}
+        allowCustomFields={true}
       />
     </form>
   );
