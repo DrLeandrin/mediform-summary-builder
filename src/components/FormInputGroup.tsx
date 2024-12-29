@@ -3,8 +3,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import CustomFieldInput from "./form/CustomFieldInput";
-import VitalSignSlider from "./form/VitalSignSlider";
-import RegularField from "./form/RegularField";
+import VitalSignsSection from "./form/VitalSignsSection";
+import RegularFieldsSection from "./form/RegularFieldsSection";
 
 interface FormInputGroupProps {
   title: string;
@@ -72,37 +72,19 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(fields).map(([key, value]) => {
-          const sliderConfig = getSliderConfig(key);
-          const isVital = isVitalSign(key);
-
-          if (isVital && sliderConfig) {
-            return (
-              <VitalSignSlider
-                key={key}
-                id={key}
-                label={sliderConfig.label}
-                value={value}
-                onChange={(newValue) => onChange(key, newValue)}
-                min={sliderConfig.min}
-                max={sliderConfig.max}
-                step={sliderConfig.step}
-              />
-            );
-          }
-
-          return (
-            <RegularField
-              key={key}
-              id={key}
-              label={key}
-              value={value}
-              onChange={(newValue) => onChange(key, newValue)}
-              onRemove={onRemove ? () => onRemove(key) : undefined}
-              isVital={isVital}
-            />
-          );
-        })}
+        <VitalSignsSection
+          fields={fields}
+          onChange={onChange}
+          getSliderConfig={getSliderConfig}
+          isVitalSign={isVitalSign}
+        />
+        
+        <RegularFieldsSection
+          fields={fields}
+          onChange={onChange}
+          onRemove={onRemove}
+          isVitalSign={isVitalSign}
+        />
         
         {allowCustomFields && !showAddField && (
           <div className="flex items-center justify-center h-[72px] border-2 border-dashed rounded-lg hover:border-primary/50 transition-colors">
