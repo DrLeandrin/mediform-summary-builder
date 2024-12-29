@@ -58,6 +58,7 @@ const TabContent: React.FC<TabContentProps> = ({
     toast({
       title: "Opções padrão selecionadas",
       description: "Todas as primeiras opções foram selecionadas automaticamente.",
+      duration: 1000,
     });
   };
 
