@@ -69,26 +69,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
     <div className="space-y-4 p-4 border rounded-lg bg-card text-card-foreground">
       <div className="flex justify-between items-center">
         <Label className="text-lg font-medium">{title}</Label>
-        {allowCustomFields && (
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => setShowAddField(!showAddField)}
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Adicionar Campo
-          </Button>
-        )}
       </div>
-
-      {showAddField && (
-        <CustomFieldInput
-          newFieldName={newFieldName}
-          onFieldNameChange={setNewFieldName}
-          onAddField={handleAddField}
-        />
-      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.entries(fields).map(([key, value]) => {
@@ -122,7 +103,30 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
             />
           );
         })}
+        
+        {allowCustomFields && !showAddField && (
+          <div className="flex items-center justify-center h-[72px] border-2 border-dashed rounded-lg hover:border-primary/50 transition-colors">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowAddField(true)}
+              className="h-full w-full flex items-center justify-center gap-2"
+            >
+              <Plus className="h-4 w-4" />
+              Adicionar Campo
+            </Button>
+          </div>
+        )}
       </div>
+
+      {showAddField && (
+        <CustomFieldInput
+          newFieldName={newFieldName}
+          onFieldNameChange={setNewFieldName}
+          onAddField={handleAddField}
+        />
+      )}
     </div>
   );
 };
