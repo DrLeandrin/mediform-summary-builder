@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import FormRadioGroup from "./FormRadioGroup";
 import { FormData } from "@/lib/types";
 
@@ -57,4 +57,4 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
   );
 };
 
-export default AvaliacaoGeral;
+export default memo(AvaliacaoGeral);

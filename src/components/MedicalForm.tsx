@@ -28,6 +28,28 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
     e.preventDefault();
   }, []);
 
+  const handleInputChange = useCallback((field: keyof FormData, value: string) => {
+    onChange({ [field]: value });
+  }, [onChange]);
+
+  const handleSinaisVitaisChange = useCallback((key: string, value: string) => {
+    onChange({
+      sinaisVitais: {
+        ...formData.sinaisVitais,
+        [key]: value,
+      },
+    });
+  }, [formData.sinaisVitais, onChange]);
+
+  const handleLaboratoriaisChange = useCallback((key: string, value: string) => {
+    onChange({
+      laboratoriais: {
+        ...formData.laboratoriais,
+        [key]: value,
+      },
+    });
+  }, [formData.laboratoriais, onChange]);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-4">
@@ -38,7 +60,7 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
           <Input
             id="pacienteNome"
             value={formData.pacienteNome}
-            onChange={(e) => onChange({ pacienteNome: e.target.value })}
+            onChange={(e) => handleInputChange("pacienteNome", e.target.value)}
             placeholder="Digite o nome do paciente..."
             className="w-full"
           />
@@ -51,7 +73,7 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
           <Textarea
             id="queixas"
             value={formData.queixas}
-            onChange={(e) => onChange({ queixas: e.target.value })}
+            onChange={(e) => handleInputChange("queixas", e.target.value)}
             placeholder="Digite as queixas do paciente..."
             className="w-full"
           />
@@ -69,7 +91,7 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
         <h2 className="text-xl font-semibold text-foreground">Exame Físico Focado</h2>
         <Textarea
           value={formData.exameFisicoFocado}
-          onChange={(e) => onChange({ exameFisicoFocado: e.target.value })}
+          onChange={(e) => handleInputChange("exameFisicoFocado", e.target.value)}
           placeholder="Digite o exame físico focado..."
           className="w-full"
         />
@@ -100,27 +122,13 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
       <FormInputGroup
         title="Sinais Vitais"
         fields={formData.sinaisVitais}
-        onChange={(key, value) =>
-          onChange({
-            sinaisVitais: {
-              ...formData.sinaisVitais,
-              [key]: value,
-            },
-          })
-        }
+        onChange={handleSinaisVitaisChange}
       />
 
       <FormInputGroup
         title="Laboratoriais"
         fields={formData.laboratoriais}
-        onChange={(key, value) =>
-          onChange({
-            laboratoriais: {
-              ...formData.laboratoriais,
-              [key]: value,
-            },
-          })
-        }
+        onChange={handleLaboratoriaisChange}
         onRemove={handleRemoveLaboratorial}
         allowCustomFields={true}
       />

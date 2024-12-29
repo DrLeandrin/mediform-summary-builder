@@ -46,15 +46,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   }, []);
 
   const isVitalSign = useCallback((key: string) => {
-    return [
-      "fr",
-      "fc",
-      "satO2",
-      "pas",
-      "pad",
-      "dextro",
-      "temperatura",
-    ].includes(key);
+    return ["fr", "fc", "satO2", "pas", "pad", "dextro", "temperatura"].includes(key);
   }, []);
 
   const handleAddField = useCallback(() => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import FormRadioGroup from "./FormRadioGroup";
 import { FormData } from "@/lib/types";
 
@@ -61,4 +61,4 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
   );
 };
 
-export default AvaliacaoRespiratoria;
+export default memo(AvaliacaoRespiratoria);
