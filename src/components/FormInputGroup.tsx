@@ -48,8 +48,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
     return ['fr', 'fc', 'satO2', 'pas', 'pad', 'dextro', 'temperatura'].includes(key);
   };
 
-  const handleAddField = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddField = () => {
     if (newFieldName.trim()) {
       onChange(newFieldName.toLowerCase(), "");
       setNewFieldName("");
@@ -75,17 +74,21 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       </div>
 
       {showAddField && (
-        <form onSubmit={handleAddField} className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center">
           <Input
             value={newFieldName}
             onChange={(e) => setNewFieldName(e.target.value)}
             placeholder="Nome do novo campo"
             className="flex-grow"
           />
-          <Button type="submit" size="sm">
+          <Button 
+            type="button"
+            onClick={handleAddField} 
+            size="sm"
+          >
             Adicionar
           </Button>
-        </form>
+        </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
