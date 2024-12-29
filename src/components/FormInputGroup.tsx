@@ -48,7 +48,8 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
     return ['fr', 'fc', 'satO2', 'pas', 'pad', 'dextro', 'temperatura'].includes(key);
   };
 
-  const handleAddField = () => {
+  const handleAddField = (e: React.FormEvent) => {
+    e.preventDefault();
     if (newFieldName.trim()) {
       onChange(newFieldName.toLowerCase(), "");
       setNewFieldName("");
@@ -62,6 +63,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
         <Label className="text-lg font-medium">{title}</Label>
         {allowCustomFields && (
           <Button
+            type="button"
             variant="outline"
             size="sm"
             onClick={() => setShowAddField(!showAddField)}
@@ -73,17 +75,17 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       </div>
 
       {showAddField && (
-        <div className="flex gap-2 items-center">
+        <form onSubmit={handleAddField} className="flex gap-2 items-center">
           <Input
             value={newFieldName}
             onChange={(e) => setNewFieldName(e.target.value)}
             placeholder="Nome do novo campo"
             className="flex-grow"
           />
-          <Button onClick={handleAddField} size="sm">
+          <Button type="submit" size="sm">
             Adicionar
           </Button>
-        </div>
+        </form>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -128,6 +130,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
                 <Label htmlFor={key} className="text-foreground">{key.toUpperCase()}</Label>
                 {onRemove && !isVital && (
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => onRemove(key)}
