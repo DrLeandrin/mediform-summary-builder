@@ -25,12 +25,12 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   const [showAddField, setShowAddField] = useState(false);
 
   const getSliderConfig = useCallback((key: string) => {
-    switch (key) {
+    switch (key.toLowerCase()) {
       case "fr":
         return { min: 0, max: 40, step: 1, label: "FR (rpm)" };
       case "fc":
         return { min: 40, max: 200, step: 1, label: "FC (bpm)" };
-      case "satO2":
+      case "sato2":
         return { min: 0, max: 100, step: 1, label: "SatO2 (%)" };
       case "pas":
         return { min: 40, max: 250, step: 1, label: "PAS (mmHg)" };
@@ -46,7 +46,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   }, []);
 
   const isVitalSign = useCallback((key: string) => {
-    return ["fr", "fc", "satO2", "pas", "pad", "dextro", "temperatura"].includes(key);
+    return ["fr", "fc", "sato2", "pas", "pad", "dextro", "temperatura"].includes(key.toLowerCase());
   }, []);
 
   const handleAddField = useCallback(() => {

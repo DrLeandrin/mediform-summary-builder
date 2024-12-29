@@ -70,6 +70,14 @@ export const initialFormData: FormData = {
   intercorrencias: "",
   acompanhante: "",
   dispositivos: [],
-  sinaisVitais: {},
+  sinaisVitais: {
+    fr: "",
+    fc: "",
+    sato2: "",
+    pas: "",
+    pad: "",
+    dextro: "",
+    temperatura: ""
+  },
   laboratoriais: {},
 };
