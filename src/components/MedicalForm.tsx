@@ -10,6 +10,7 @@ import AvaliacaoFisica from "./AvaliacaoFisica";
 import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -30,13 +31,31 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Queixas</h2>
-        <Textarea
-          value={formData.queixas}
-          onChange={(e) => onChange({ queixas: e.target.value })}
-          placeholder="Digite as queixas do paciente..."
-          className="w-full"
-        />
+        <div className="space-y-2">
+          <Label htmlFor="pacienteNome" className="text-xl font-semibold text-foreground">
+            Nome do Paciente (Referência)
+          </Label>
+          <Input
+            id="pacienteNome"
+            value={formData.pacienteNome}
+            onChange={(e) => onChange({ pacienteNome: e.target.value })}
+            placeholder="Digite o nome do paciente..."
+            className="w-full"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="queixas" className="text-xl font-semibold text-foreground">
+            Queixas
+          </Label>
+          <Textarea
+            id="queixas"
+            value={formData.queixas}
+            onChange={(e) => onChange({ queixas: e.target.value })}
+            placeholder="Digite as queixas do paciente..."
+            className="w-full"
+          />
+        </div>
       </div>
 
       <AvaliacaoGeral formData={formData} onChange={onChange} />
