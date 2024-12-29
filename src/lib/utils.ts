@@ -61,6 +61,11 @@ export function generateSummary(data: FormData): string {
   ].filter(Boolean).join(", ");
   if (linha5) summary += linha5 + ".\n";
 
+  // Nova linha - Exame Físico Focado
+  if (data.exameFisicoFocado) {
+    summary += "Exame físico focado: " + data.exameFisicoFocado + ".\n";
+  }
+
   // Sexta linha - Dispositivos
   if (data.dispositivos.length > 0) {
     summary += "Dispositivos: " + data.dispositivos.join(", ") + ".\n";

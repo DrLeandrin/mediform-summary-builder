@@ -9,6 +9,7 @@ import AvaliacaoNeurologica from "./AvaliacaoNeurologica";
 import AvaliacaoFisica from "./AvaliacaoFisica";
 import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
 import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -44,6 +45,16 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
       <AvaliacaoNeurologica formData={formData} onChange={onChange} />
       <AvaliacaoFisica formData={formData} onChange={onChange} />
       <AvaliacaoNecessidades formData={formData} onChange={onChange} />
+
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold text-foreground">Exame Físico Focado</h2>
+        <Textarea
+          value={formData.exameFisicoFocado}
+          onChange={(e) => onChange({ exameFisicoFocado: e.target.value })}
+          placeholder="Digite o exame físico focado..."
+          className="w-full"
+        />
+      </div>
 
       <FormDevicesGroup
         devices={[
