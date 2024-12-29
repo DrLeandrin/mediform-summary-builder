@@ -22,7 +22,7 @@ const MEDICAL_CONDUCT_OPTIONS = [
 ];
 
 const FormMedicalConductGroup: React.FC<FormMedicalConductGroupProps> = ({
-  selectedConduct,
+  selectedConduct = [], // Add default empty array
   onChange,
 }) => (
   <div className="space-y-2 p-4 border rounded-lg bg-card text-card-foreground">
@@ -32,8 +32,12 @@ const FormMedicalConductGroup: React.FC<FormMedicalConductGroupProps> = ({
         <div key={conduct} className="flex items-center space-x-2">
           <Checkbox
             id={conduct}
-            checked={selectedConduct.includes(conduct)}
+            checked={Array.isArray(selectedConduct) && selectedConduct.includes(conduct)}
             onCheckedChange={(checked) => {
+              if (!Array.isArray(selectedConduct)) {
+                onChange([conduct]);
+                return;
+              }
               const newConduct = checked
                 ? [...selectedConduct, conduct]
                 : selectedConduct.filter((d) => d !== conduct);
