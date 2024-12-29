@@ -190,7 +190,7 @@ const Index = () => {
               pode fazer por você! Venha conhecer inteligencia artificial mais avançada para médicos! GRATIS!
             </p>
 
-            <div className="mt-8 text-gray-200">
+            <div className="mt-8 text-gray-200 text-left">
               <p className="font-bold mb-2">Você também pode gostar:</p>
               <ul className="space-y-1">
                 <li>
