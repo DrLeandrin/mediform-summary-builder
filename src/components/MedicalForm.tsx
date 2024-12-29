@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { FormData } from "@/lib/types";
 import FormDevicesGroup from "./FormDevicesGroup";
+import FormMedicalConductGroup from "./FormMedicalConductGroup";
 import AvaliacaoGeral from "./AvaliacaoGeral";
 import AvaliacaoRespiratoria from "./AvaliacaoRespiratoria";
 import AvaliacaoCardioAbdominal from "./AvaliacaoCardioAbdominal";
@@ -95,6 +96,11 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
         onSinaisVitaisChange={handleSinaisVitaisChange}
         onLaboratoriaisChange={handleLaboratoriaisChange}
         onRemoveLaboratorial={handleRemoveLaboratorial}
+      />
+
+      <FormMedicalConductGroup
+        selectedConduct={formData.condutaMedica}
+        onChange={(conduct) => onChange({ condutaMedica: conduct })}
       />
     </form>
   );

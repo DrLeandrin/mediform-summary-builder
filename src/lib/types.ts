@@ -32,6 +32,7 @@ export interface FormData {
   intercorrencias: string;
   acompanhante: string;
   dispositivos: string[];
+  condutaMedica: string[];
   sinaisVitais: Record<string, string>;
   laboratoriais: Record<string, string>;
 }
@@ -70,6 +71,13 @@ export const initialFormData: FormData = {
   intercorrencias: "",
   acompanhante: "",
   dispositivos: [],
+  condutaMedica: [
+    "Libero Prescrição Médica",
+    "Monitoramento de Sinais vitais",
+    "Cuidados Gerais e Cuidados de Enfermagem",
+    "Restante Mantido",
+    "Orientações ao Paciente e/ou Familiares"
+  ],
   sinaisVitais: {
     fr: "",
     fc: "",

@@ -94,5 +94,13 @@ export function generateSummary(data: FormData): string {
     summary += "Laboratoriais: " + labs.join(", ") + ".\n";
   }
 
+  // Add medical conduct at the end
+  if (data.condutaMedica.length > 0) {
+    summary += "\nConduta Médica:\n";
+    data.condutaMedica.forEach(conduct => {
+      summary += `- ${conduct}\n`;
+    });
+  }
+
   return summary;
 }
