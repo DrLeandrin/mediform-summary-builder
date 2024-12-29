@@ -174,6 +174,21 @@ const Index = () => {
               </TabsContent>
             ))}
           </Tabs>
+
+          <div className="text-center py-8">
+            <p className="font-serif text-lg italic text-gray-200">
+              Está gostando da ferramenta? Esta é só uma amostra do que a{" "}
+              <a 
+                href="https://www.avelis.com.br" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Avelis
+              </a>{" "}
+              pode fazer por você! Venha conhecer a ferramenta em IA mais avançada para médicos GRATIS!
+            </p>
+          </div>
         </div>
       </div>
     </div>
