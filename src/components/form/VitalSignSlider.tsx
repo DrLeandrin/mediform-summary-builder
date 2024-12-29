@@ -38,7 +38,7 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
             onValueChange={(vals) => onChange(vals[0].toString())}
           />
         </div>
-        <div className="w-16">
+        <div className="w-20">
           <Input
             type="number"
             value={value}
