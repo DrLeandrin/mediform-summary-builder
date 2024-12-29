@@ -3,7 +3,6 @@ import MedicalForm from "@/components/MedicalForm";
 import Summary from "@/components/Summary";
 import { FormData, initialFormData } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/ThemeToggle";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
@@ -102,7 +101,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground dark">
       <div className="container mx-auto py-8 px-4">
         <div className="space-y-8">
           <div className="flex justify-between items-center">
@@ -117,7 +116,6 @@ const Index = () => {
               <h1 className="text-2xl font-bold text-center">
                 Monta Evolução - Avelis.com.br
               </h1>
-              <ThemeToggle />
             </div>
           </div>
 
