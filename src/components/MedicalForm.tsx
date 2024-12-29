@@ -22,8 +22,12 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
     onChange({ laboratoriais: newLaboratoriais });
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-4">
         <h2 className="text-xl font-semibold text-foreground">Queixas</h2>
         <Textarea
