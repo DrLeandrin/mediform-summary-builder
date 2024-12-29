@@ -79,5 +79,15 @@ export const initialFormData: FormData = {
     dextro: "",
     temperatura: ""
   },
-  laboratoriais: {},
+  laboratoriais: {
+    "hemoglobina": "",
+    "hematócrito": "",
+    "leucócitos": "",
+    "plaquetas": "",
+    "sódio": "",
+    "potássio": "",
+    "ureia": "",
+    "creatinina": "",
+    "pcr": "",
+  },
 };

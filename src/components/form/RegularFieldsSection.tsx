@@ -17,8 +17,7 @@ const RegularFieldsSection: React.FC<RegularFieldsSectionProps> = ({
   return (
     <>
       {Object.entries(fields).map(([key, value]) => {
-        const isVital = isVitalSign(key);
-        if (!isVital) {
+        if (!isVitalSign(key)) {
           return (
             <RegularField
               key={key}
@@ -27,7 +26,7 @@ const RegularFieldsSection: React.FC<RegularFieldsSectionProps> = ({
               value={value}
               onChange={(newValue) => onChange(key, newValue)}
               onRemove={onRemove ? () => onRemove(key) : undefined}
-              isVital={isVital}
+              isVital={false}
             />
           );
         }
