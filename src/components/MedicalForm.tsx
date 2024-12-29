@@ -1,16 +1,15 @@
 import React, { useCallback } from "react";
 import { FormData } from "@/lib/types";
 import FormDevicesGroup from "./FormDevicesGroup";
-import FormInputGroup from "./FormInputGroup";
 import AvaliacaoGeral from "./AvaliacaoGeral";
 import AvaliacaoRespiratoria from "./AvaliacaoRespiratoria";
 import AvaliacaoCardioAbdominal from "./AvaliacaoCardioAbdominal";
 import AvaliacaoNeurologica from "./AvaliacaoNeurologica";
 import AvaliacaoFisica from "./AvaliacaoFisica";
 import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import PatientInfoSection from "./form/PatientInfoSection";
+import PhysicalExamSection from "./form/PhysicalExamSection";
+import VitalsAndLabsSection from "./form/VitalsAndLabsSection";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -52,33 +51,10 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="pacienteNome" className="text-xl font-semibold text-foreground">
-            Nome do Paciente (Referência)
-          </Label>
-          <Input
-            id="pacienteNome"
-            value={formData.pacienteNome}
-            onChange={(e) => handleInputChange("pacienteNome", e.target.value)}
-            placeholder="Digite o nome do paciente..."
-            className="w-full"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="queixas" className="text-xl font-semibold text-foreground">
-            Queixas
-          </Label>
-          <Textarea
-            id="queixas"
-            value={formData.queixas}
-            onChange={(e) => handleInputChange("queixas", e.target.value)}
-            placeholder="Digite as queixas do paciente..."
-            className="w-full"
-          />
-        </div>
-      </div>
+      <PatientInfoSection 
+        formData={formData} 
+        onInputChange={handleInputChange} 
+      />
 
       <AvaliacaoGeral formData={formData} onChange={onChange} />
       <AvaliacaoRespiratoria formData={formData} onChange={onChange} />
@@ -87,15 +63,10 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
       <AvaliacaoFisica formData={formData} onChange={onChange} />
       <AvaliacaoNecessidades formData={formData} onChange={onChange} />
 
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Exame Físico Focado</h2>
-        <Textarea
-          value={formData.exameFisicoFocado}
-          onChange={(e) => handleInputChange("exameFisicoFocado", e.target.value)}
-          placeholder="Digite o exame físico focado..."
-          className="w-full"
-        />
-      </div>
+      <PhysicalExamSection 
+        formData={formData} 
+        onInputChange={handleInputChange} 
+      />
 
       <FormDevicesGroup
         devices={[
@@ -119,18 +90,11 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
         onChange={(devices) => onChange({ dispositivos: devices })}
       />
 
-      <FormInputGroup
-        title="Sinais Vitais"
-        fields={formData.sinaisVitais}
-        onChange={handleSinaisVitaisChange}
-      />
-
-      <FormInputGroup
-        title="Laboratoriais"
-        fields={formData.laboratoriais}
-        onChange={handleLaboratoriaisChange}
-        onRemove={handleRemoveLaboratorial}
-        allowCustomFields={true}
+      <VitalsAndLabsSection
+        formData={formData}
+        onSinaisVitaisChange={handleSinaisVitaisChange}
+        onLaboratoriaisChange={handleLaboratoriaisChange}
+        onRemoveLaboratorial={handleRemoveLaboratorial}
       />
     </form>
   );
