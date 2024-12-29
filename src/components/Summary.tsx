@@ -26,6 +26,11 @@ const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange, onReset }) 
     }
   };
 
+  const handleResetAndScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onReset();
+  };
+
   return (
     <div className="w-full space-y-4 p-4">
       <h2 className="text-xl font-semibold text-gray-800">Sumário</h2>
@@ -36,7 +41,7 @@ const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange, onReset }) 
         placeholder="O sumário será gerado automaticamente conforme você preenche o formulário..."
       />
       <div className="flex gap-4 justify-end">
-        <Button variant="outline" onClick={onReset}>
+        <Button variant="outline" onClick={handleResetAndScrollTop}>
           Resetar Formulário
         </Button>
         <Button onClick={handleCopy}>
