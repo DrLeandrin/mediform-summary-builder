@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FormData } from "@/lib/types";
 import FormDevicesGroup from "./FormDevicesGroup";
 import FormInputGroup from "./FormInputGroup";
@@ -18,15 +18,15 @@ interface MedicalFormProps {
 }
 
 const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
-  const handleRemoveLaboratorial = (key: string) => {
+  const handleRemoveLaboratorial = useCallback((key: string) => {
     const newLaboratoriais = { ...formData.laboratoriais };
     delete newLaboratoriais[key];
     onChange({ laboratoriais: newLaboratoriais });
-  };
+  }, [formData.laboratoriais, onChange]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
-  };
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">

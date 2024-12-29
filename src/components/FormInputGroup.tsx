@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -24,7 +24,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   const [newFieldName, setNewFieldName] = useState("");
   const [showAddField, setShowAddField] = useState(false);
 
-  const getSliderConfig = (key: string) => {
+  const getSliderConfig = useCallback((key: string) => {
     switch (key) {
       case "fr":
         return { min: 0, max: 40, step: 1, label: "FR (rpm)" };
@@ -43,9 +43,9 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       default:
         return null;
     }
-  };
+  }, []);
 
-  const isVitalSign = (key: string) => {
+  const isVitalSign = useCallback((key: string) => {
     return [
       "fr",
       "fc",
@@ -55,15 +55,15 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       "dextro",
       "temperatura",
     ].includes(key);
-  };
+  }, []);
 
-  const handleAddField = () => {
+  const handleAddField = useCallback(() => {
     if (newFieldName.trim()) {
       onChange(newFieldName.toLowerCase(), "");
       setNewFieldName("");
       setShowAddField(false);
     }
-  };
+  }, [newFieldName, onChange]);
 
   return (
     <div className="space-y-4 p-4 border rounded-lg bg-card text-card-foreground">
