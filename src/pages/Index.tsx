@@ -4,7 +4,7 @@ import Summary from "@/components/Summary";
 import { FormData, initialFormData } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
-import { Plus } from "lucide-react";
+import { Plus, Copy } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import PatientTabHeader from "@/components/PatientTabHeader";
 import { generateSummary } from "@/lib/utils";
@@ -100,6 +100,39 @@ const Index = () => {
     );
   };
 
+  const copyAllSummaries = async () => {
+    const allSummaries = tabs
+      .map((tab) => {
+        if (!tab.summary.trim()) return null;
+        return `=== ${tab.formData.pacienteNome || tab.name} ===\n${tab.summary}\n`;
+      })
+      .filter(Boolean)
+      .join("\n");
+
+    if (!allSummaries) {
+      toast({
+        title: "Nenhum sumário disponível",
+        description: "Não há sumários preenchidos para copiar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(allSummaries);
+      toast({
+        title: "Sumários copiados!",
+        description: "Todos os sumários foram copiados para a área de transferência.",
+      });
+    } catch (err) {
+      toast({
+        title: "Erro ao copiar",
+        description: "Não foi possível copiar os sumários.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground dark">
       <div className="container mx-auto py-8 px-4">
@@ -133,14 +166,25 @@ const Index = () => {
                   />
                 ))}
               </TabsList>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={addNewTab}
-                className="rounded-full"
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={addNewTab}
+                  className="rounded-full"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={copyAllSummaries}
+                  className="rounded-full"
+                  title="Copiar todos os sumários"
+                >
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
 
             {tabs.map((tab) => (
