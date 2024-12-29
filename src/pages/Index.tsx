@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import MedicalForm from "@/components/MedicalForm";
-import Summary from "@/components/Summary";
 import { FormData, initialFormData } from "@/lib/types";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
-import { Plus, Copy } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import PatientTabHeader from "@/components/PatientTabHeader";
 import { generateSummary } from "@/lib/utils";
+import PageHeader from "@/components/tab/PageHeader";
+import ActionButtons from "@/components/tab/ActionButtons";
+import TabContent from "@/components/tab/TabContent";
 
 interface PatientTab {
   id: string;
@@ -137,20 +136,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground dark">
       <div className="container mx-auto py-8 px-4">
         <div className="space-y-8">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <a href="https://www.avelis.com.br/" target="_blank" rel="noopener noreferrer">
-                <img 
-                  src="https://www.avelis.com.br/logo-transparente.svg" 
-                  alt="Avelis Logo" 
-                  className="h-12"
-                />
-              </a>
-              <h1 className="text-2xl font-bold text-center">
-                Monta Evolução - Avelis.com.br
-              </h1>
-            </div>
-          </div>
+          <PageHeader />
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="flex items-center gap-2 mb-4">
@@ -166,47 +152,21 @@ const Index = () => {
                   />
                 ))}
               </TabsList>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={addNewTab}
-                  className="rounded-full"
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={copyAllSummaries}
-                  className="rounded-full"
-                  title="Copiar todos os sumários"
-                >
-                  <Copy className="h-4 w-4" />
-                </Button>
-              </div>
+              <ActionButtons 
+                onAddTab={addNewTab}
+                onCopyAll={copyAllSummaries}
+              />
             </div>
 
             {tabs.map((tab) => (
               <TabsContent key={tab.id} value={tab.id}>
-                <div className="space-y-8">
-                  <div className="bg-card text-card-foreground rounded-lg shadow p-6">
-                    <MedicalForm
-                      formData={tab.formData}
-                      onChange={(newData) => handleFormChange(tab.id, newData)}
-                    />
-                  </div>
-
-                  <div className="bg-card text-card-foreground rounded-lg shadow">
-                    <Summary
-                      summary={tab.summary}
-                      onSummaryChange={(newSummary) =>
-                        handleSummaryChange(tab.id, newSummary)
-                      }
-                      onReset={() => handleReset(tab.id)}
-                    />
-                  </div>
-                </div>
+                <TabContent
+                  formData={tab.formData}
+                  summary={tab.summary}
+                  onChange={(newData) => handleFormChange(tab.id, newData)}
+                  onSummaryChange={(newSummary) => handleSummaryChange(tab.id, newSummary)}
+                  onReset={() => handleReset(tab.id)}
+                />
               </TabsContent>
             ))}
           </Tabs>
