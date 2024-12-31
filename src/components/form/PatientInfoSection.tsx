@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FormData } from "@/lib/types";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface PatientInfoSectionProps {
   formData: FormData;
@@ -14,9 +14,11 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
   formData,
   onInputChange,
 }) => {
-  const handleQueixasChange = (value: string) => {
-    if (value === "sem queixas") {
-      onInputChange("queixas", value);
+  const handleQueixasChange = (checked: boolean) => {
+    if (checked) {
+      onInputChange("queixas", "sem queixas");
+    } else {
+      onInputChange("queixas", "");
     }
   };
 
@@ -35,20 +37,18 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 border border-input rounded-md p-4">
         <Label className="text-xl font-semibold text-foreground">
           Queixas
         </Label>
-        <RadioGroup
-          value={formData.queixas === "sem queixas" ? "sem queixas" : ""}
-          onValueChange={handleQueixasChange}
-          className="mb-4"
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="sem queixas" id="sem-queixas" />
-            <Label htmlFor="sem-queixas">Sem queixas</Label>
-          </div>
-        </RadioGroup>
+        <div className="flex items-center space-x-2 mb-4">
+          <Checkbox
+            id="sem-queixas"
+            checked={formData.queixas === "sem queixas"}
+            onCheckedChange={handleQueixasChange}
+          />
+          <Label htmlFor="sem-queixas">Sem queixas</Label>
+        </div>
         <Textarea
           value={formData.queixas !== "sem queixas" ? formData.queixas : ""}
           onChange={(e) => onInputChange("queixas", `queixas: ${e.target.value}`)}
