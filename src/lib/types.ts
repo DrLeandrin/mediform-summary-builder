@@ -39,6 +39,7 @@ export interface FormData {
   condutaMedica: string[];
   sinaisVitais: Record<string, string>;
   laboratoriais: Record<string, string>;
+  gasometria: Record<string, string>;
 }
 
 export const initialFormData: FormData = {
@@ -106,4 +107,13 @@ export const initialFormData: FormData = {
     "creatinina": "",
     "pcr": "",
   },
+  gasometria: {
+    "pH": "",
+    "PaCO2": "",
+    "PaO2": "",
+    "HCO3": "",
+    "SaO2": "",
+    "BE": "",
+    "Lactato": ""
+  }
 };

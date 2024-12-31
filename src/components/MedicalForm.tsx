@@ -5,6 +5,7 @@ import FormMedicalConductGroup from "./FormMedicalConductGroup";
 import PatientInfoSection from "./form/PatientInfoSection";
 import PhysicalExamSection from "./form/PhysicalExamSection";
 import VitalsAndLabsSection from "./form/VitalsAndLabsSection";
+import GasometriaSection from "./form/GasometriaSection";
 import AssessmentSections from "./assessment/AssessmentSections";
 
 interface MedicalFormProps {
@@ -18,6 +19,12 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
     delete newLaboratoriais[key];
     onChange({ laboratoriais: newLaboratoriais });
   }, [formData.laboratoriais, onChange]);
+
+  const handleRemoveGasometria = useCallback((key: string) => {
+    const newGasometria = { ...formData.gasometria };
+    delete newGasometria[key];
+    onChange({ gasometria: newGasometria });
+  }, [formData.gasometria, onChange]);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +51,15 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
       },
     });
   }, [formData.laboratoriais, onChange]);
+
+  const handleGasometriaChange = useCallback((key: string, value: string) => {
+    onChange({
+      gasometria: {
+        ...formData.gasometria,
+        [key]: value,
+      },
+    });
+  }, [formData.gasometria, onChange]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -86,6 +102,12 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
         onSinaisVitaisChange={handleSinaisVitaisChange}
         onLaboratoriaisChange={handleLaboratoriaisChange}
         onRemoveLaboratorial={handleRemoveLaboratorial}
+      />
+
+      <GasometriaSection
+        formData={formData}
+        onGasometriaChange={handleGasometriaChange}
+        onRemoveGasometria={handleRemoveGasometria}
       />
 
       <FormMedicalConductGroup

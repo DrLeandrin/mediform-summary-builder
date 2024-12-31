@@ -129,6 +129,14 @@ export function generateSummary(data: FormData): string {
     summary += "Laboratoriais: " + labs.join(", ") + ".\n";
   }
 
+  // Nova linha - Gasometria
+  const gasometria = Object.entries(data.gasometria)
+    .filter(([_, value]) => value)
+    .map(([key, value]) => `${key}: ${value}`);
+  if (gasometria.length > 0) {
+    summary += "Gasometria: " + gasometria.join(", ") + ".\n";
+  }
+
   // Add medical conduct at the end
   if (data.condutaMedica.length > 0) {
     summary += "\nConduta Médica:\n";
