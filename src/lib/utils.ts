@@ -126,7 +126,7 @@ export function generateSummary(data: FormData): string {
     .filter(([_, value]) => value)
     .map(([key, value]) => `${key.toUpperCase()}: ${value}`);
   if (labs.length > 0) {
-    summary += "Laboratoriais: " + labs.join(", ") + ".\n";
+    summary += "Laboratoriais: " + labs.join(" / ") + ".\n";
   }
 
   // Nova linha - Gasometria
@@ -134,7 +134,7 @@ export function generateSummary(data: FormData): string {
     .filter(([_, value]) => value)
     .map(([key, value]) => `${key}: ${value}`);
   if (gasometria.length > 0) {
-    summary += "Gasometria: " + gasometria.join(", ") + ".\n";
+    summary += "Gasometria: " + gasometria.join(" / ") + ".\n";
   }
 
   // Add medical conduct at the end
