@@ -18,16 +18,16 @@ const RassAssessment: React.FC<RassAssessmentProps> = ({ formData, onChange }) =
       <FormRadioGroup
         name="rassScale"
         options={[
-          "+4: Combativo – Violento, representa perigo imediato para si mesmo ou para a equipe",
-          "+3: Muito agitado – Comportamento agressivo ou movimentos descontrolados",
-          "+2: Agitado – Movimenta-se frequentemente, não obedece comandos",
-          "+1: Inquieto – Ansioso, mas sem comportamentos agressivos",
-          "0: Alerta e calmo – Estado normal",
-          "-1: Sonolento – Acorda ao chamado, mas não mantém atenção total",
-          "-2: Sedação leve – Responde ao estímulo verbal, mas não mantém contato visual",
-          "-3: Sedação moderada – Responde ao estímulo verbal ou ao chamado apenas com movimento ou abertura ocular",
-          "-4: Sedação profunda – Responde apenas ao estímulo físico (estímulo doloroso leve)",
-          "-5: Não responsivo – Não há resposta a estímulos verbais ou físicos"
+          "+4: Combativo",
+          "+3: Muito agitado",
+          "+2: Agitado",
+          "+1: Inquieto",
+          "0: Alerta e calmo",
+          "-1: Sonolento",
+          "-2: Sedação leve",
+          "-3: Sedação moderada",
+          "-4: Sedação profunda",
+          "-5: Não responsivo"
         ]}
         value={formData.rassScale}
         label="Escala RASS"
