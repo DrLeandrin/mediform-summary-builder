@@ -20,7 +20,7 @@ const VitalSignsSection: React.FC<VitalSignsSectionProps> = ({
   isVitalSign,
 }) => {
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {Object.entries(fields).map(([key, value]) => {
         const sliderConfig = getSliderConfig(key);
         if (isVitalSign(key) && sliderConfig) {

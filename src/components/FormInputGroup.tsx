@@ -23,7 +23,6 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   const [newFieldName, setNewFieldName] = useState("");
   const [markedFields, setMarkedFields] = useState<Record<string, boolean>>({});
 
-  // Reset marked fields when fields are empty
   useEffect(() => {
     const hasValues = Object.values(fields).some(value => value !== "");
     if (!hasValues) {
@@ -52,30 +51,30 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   return (
     <div className="space-y-4 p-4 rounded-lg border bg-card text-card-foreground shadow-sm">
       <h3 className="text-lg font-semibold">{title}</h3>
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {Object.entries(fields).map(([key, value]) => {
           const cleanValue = value.replace(/[(!)]*/g, '');
           const isMarked = value.includes('(!)');
 
           return (
-            <div key={key} className="flex items-center gap-4">
-              <div className="flex-grow">
+            <div key={key} className="flex flex-col space-y-2">
+              <div className="flex items-center justify-between">
                 <Label htmlFor={key} className="text-foreground">
                   {key}
                 </Label>
-                <Input
-                  id={key}
-                  value={cleanValue}
-                  onChange={(e) => handleValueChange(key, e.target.value)}
-                  className="bg-background text-foreground"
+                <input
+                  type="checkbox"
+                  checked={isMarked}
+                  onChange={(e) => handleMarkChange(key, e.target.checked)}
+                  className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                  title="Marcar como importante"
                 />
               </div>
-              <input
-                type="checkbox"
-                checked={isMarked}
-                onChange={(e) => handleMarkChange(key, e.target.checked)}
-                className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary mt-6"
-                title="Marcar como importante"
+              <Input
+                id={key}
+                value={cleanValue}
+                onChange={(e) => handleValueChange(key, e.target.value)}
+                className="bg-background text-foreground"
               />
             </div>
           );
