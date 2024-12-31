@@ -56,6 +56,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
         {Object.entries(fields).map(([key, value]) => (
           <div key={key} className="flex items-center gap-2">
             <RegularField
+              id={key}
               label={key.toUpperCase()}
               value={value.replace("(!)", "")}
               onChange={(newValue) => handleFieldChange(key, newValue)}
@@ -74,9 +75,9 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
       {allowCustomFields && (
         <div className="flex items-end gap-2">
           <CustomFieldInput
-            value={newFieldName}
-            onChange={setNewFieldName}
-            onEnter={handleAddField}
+            newFieldName={newFieldName}
+            onFieldNameChange={setNewFieldName}
+            onAddField={handleAddField}
           />
           <Button
             type="button"
