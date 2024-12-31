@@ -3,7 +3,7 @@ import MedicalForm from "../MedicalForm";
 import Summary from "../Summary";
 import { FormData } from "@/lib/types";
 import { Button } from "../ui/button";
-import { Wand2 } from "lucide-react";
+import { Wand2, FileText } from "lucide-react";
 import { toast } from "../ui/use-toast";
 
 interface TabContentProps {
@@ -62,8 +62,15 @@ const TabContent: React.FC<TabContentProps> = ({
     });
   };
 
+  const scrollToSummary = () => {
+    const summaryElement = document.querySelector('[data-summary-section]');
+    if (summaryElement) {
+      summaryElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
       <div className="flex flex-col gap-2">
         <Button
           variant="outline"
@@ -86,13 +93,22 @@ const TabContent: React.FC<TabContentProps> = ({
         />
       </div>
 
-      <div className="bg-card text-card-foreground rounded-lg shadow">
+      <div className="bg-card text-card-foreground rounded-lg shadow" data-summary-section>
         <Summary
           summary={summary}
           onSummaryChange={onSummaryChange}
           onReset={onReset}
         />
       </div>
+
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed bottom-4 right-4 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+        onClick={scrollToSummary}
+      >
+        <FileText className="h-4 w-4" />
+      </Button>
     </div>
   );
 };
