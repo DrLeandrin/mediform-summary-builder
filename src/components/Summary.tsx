@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
+import { Brain } from "lucide-react";
 
 interface SummaryProps {
   summary: string;
@@ -46,6 +47,10 @@ const Summary: React.FC<SummaryProps> = ({ summary, onSummaryChange, onReset }) 
         </Button>
         <Button onClick={handleCopy}>
           Copiar Sumário
+        </Button>
+        <Button disabled variant="outline" className="gap-2">
+          <Brain className="h-4 w-4" />
+          Análise IA (em breve)
         </Button>
       </div>
     </div>
