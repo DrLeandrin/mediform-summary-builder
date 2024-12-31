@@ -11,6 +11,7 @@ import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
 import PatientInfoSection from "./form/PatientInfoSection";
 import PhysicalExamSection from "./form/PhysicalExamSection";
 import VitalsAndLabsSection from "./form/VitalsAndLabsSection";
+import GlasgowAssessment from "./GlasgowAssessment";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -58,6 +59,7 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
       />
 
       <AvaliacaoGeral formData={formData} onChange={onChange} />
+      <GlasgowAssessment formData={formData} onChange={onChange} />
       <AvaliacaoRespiratoria formData={formData} onChange={onChange} />
       <AvaliacaoCardioAbdominal formData={formData} onChange={onChange} />
       <AvaliacaoNeurologica formData={formData} onChange={onChange} />

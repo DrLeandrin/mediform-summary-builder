@@ -6,13 +6,41 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function calculateGlasgowScore(data: FormData): { total: number; components: string } {
+  const getPoints = (value: string): number => {
+    const match = value.match(/(\d+)\s*pts?$/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  const ocular = getPoints(data.glasgowOcular);
+  const verbal = getPoints(data.glasgowVerbal);
+  const motor = getPoints(data.glasgowMotora);
+  
+  const total = ocular + verbal + motor;
+  
+  return {
+    total,
+    components: `(${ocular}/${verbal}/${motor})`
+  };
+}
+
 export function generateSummary(data: FormData): string {
   let summary = "";
   
   // Primeira linha
-  const linha1 = [
+  const linha1Parts = [
     data.estadoGeral,
-    data.consciencia,
+    data.consciencia
+  ];
+
+  // Add Glasgow score if available
+  if (data.glasgowOcular && data.glasgowVerbal && data.glasgowMotora) {
+    const glasgow = calculateGlasgowScore(data);
+    linha1Parts.push(`Glasgow ${glasgow.total} pts${glasgow.components}`);
+  }
+
+  // Add remaining first line items
+  linha1Parts.push(
     data.palidez,
     data.hidratacao,
     data.cianose,
@@ -26,7 +54,9 @@ export function generateSummary(data: FormData): string {
     data.perfusaoPeriferica,
     data.acompanhante,
     data.queixas
-  ].filter(Boolean).join(", ");
+  );
+
+  const linha1 = linha1Parts.filter(Boolean).join(", ");
   if (linha1) summary += linha1 + ".\n";
 
   // Segunda linha

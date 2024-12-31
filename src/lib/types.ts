@@ -4,6 +4,9 @@ export interface FormData {
   exameFisicoFocado: string;
   estadoGeral: string;
   consciencia: string;
+  glasgowOcular: string;
+  glasgowVerbal: string;
+  glasgowMotora: string;
   temperatura: string;
   freqRespiratoria: string;
   torax: string;
@@ -43,6 +46,9 @@ export const initialFormData: FormData = {
   exameFisicoFocado: "",
   estadoGeral: "",
   consciencia: "",
+  glasgowOcular: "",
+  glasgowVerbal: "",
+  glasgowMotora: "",
   temperatura: "",
   freqRespiratoria: "",
   torax: "",
