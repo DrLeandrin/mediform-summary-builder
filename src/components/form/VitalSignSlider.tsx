@@ -25,16 +25,17 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
   const [isMarked, setIsMarked] = useState(false);
 
   const handleValueChange = (newValue: string) => {
-    const baseValue = id === 'sato2' ? `${newValue}%` : newValue;
-    onChange(isMarked ? `${baseValue}(!)` : baseValue);
+    const baseValue = id === 'sato2' ? `${newValue}` : newValue;
+    const formattedValue = id === 'sato2' ? `${baseValue}%` : baseValue;
+    onChange(isMarked ? `${formattedValue}(!)` : formattedValue);
   };
 
   const handleMarkChange = (checked: boolean) => {
     setIsMarked(checked);
     const valueWithoutMark = value.replace("(!)", "");
-    const baseValue = id === 'sato2' ? valueWithoutMark : valueWithoutMark.replace("%", "");
-    const newValue = id === 'sato2' ? `${baseValue}%` : baseValue;
-    onChange(checked ? `${newValue}(!)` : newValue);
+    const baseValue = valueWithoutMark.replace("%", "");
+    const formattedValue = id === 'sato2' ? `${baseValue}%` : baseValue;
+    onChange(checked ? `${formattedValue}(!)` : formattedValue);
   };
 
   const displayValue = value.replace("(!)", "").replace("%", "");
