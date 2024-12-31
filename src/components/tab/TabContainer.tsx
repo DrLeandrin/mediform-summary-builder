@@ -4,6 +4,7 @@ import { FormData } from "@/lib/types";
 import PatientTabHeader from "@/components/PatientTabHeader";
 import TabContent from "./TabContent";
 import ActionButtons from "./ActionButtons";
+import { toast } from "../ui/use-toast";
 
 interface PatientTab {
   id: string;
@@ -24,6 +25,7 @@ interface TabContainerProps {
   onCopyAll: () => void;
   onTabNameChange: (tabId: string, newName: string) => void;
   onToggleEdit: (tabId: string) => void;
+  onDeleteTab: (tabId: string) => void;
 }
 
 const TabContainer: React.FC<TabContainerProps> = ({
@@ -37,7 +39,21 @@ const TabContainer: React.FC<TabContainerProps> = ({
   onCopyAll,
   onTabNameChange,
   onToggleEdit,
+  onDeleteTab,
 }) => {
+  const handleDeleteTab = (tabId: string) => {
+    if (tabs.length === 1) {
+      toast({
+        title: "Não é possível excluir",
+        description: "Deve haver pelo menos uma aba de paciente.",
+        variant: "destructive",
+        duration: 1000,
+      });
+      return;
+    }
+    onDeleteTab(tabId);
+  };
+
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
       <div className="flex items-center gap-2 mb-4">
@@ -50,6 +66,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
               isEditing={tab.isEditing}
               onNameChange={onTabNameChange}
               onToggleEdit={onToggleEdit}
+              onDelete={handleDeleteTab}
             />
           ))}
         </TabsList>

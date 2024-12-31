@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Edit2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 interface PatientTabHeaderProps {
   id: string;
@@ -10,6 +10,7 @@ interface PatientTabHeaderProps {
   isEditing: boolean;
   onNameChange: (id: string, newName: string) => void;
   onToggleEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
@@ -18,6 +19,7 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
   isEditing,
   onNameChange,
   onToggleEdit,
+  onDelete,
 }) => {
   const [inputValue, setInputValue] = useState(name);
 
@@ -58,10 +60,10 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
             className="h-4 w-4 absolute right-1 opacity-0 group-hover:opacity-100 transition-opacity"
             onClick={(e) => {
               e.stopPropagation();
-              onToggleEdit(id);
+              onDelete(id);
             }}
           >
-            <Edit2 className="h-3 w-3" />
+            <Trash2 className="h-3 w-3 text-destructive" />
           </Button>
         </>
       )}

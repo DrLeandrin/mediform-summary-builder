@@ -98,6 +98,21 @@ const Index = () => {
     );
   };
 
+  const handleDeleteTab = (tabId: string) => {
+    setTabs((prevTabs) => {
+      const newTabs = prevTabs.filter((tab) => tab.id !== tabId);
+      if (activeTab === tabId) {
+        setActiveTab(newTabs[0].id);
+      }
+      return newTabs;
+    });
+    toast({
+      title: "Aba removida",
+      description: "A aba do paciente foi removida com sucesso.",
+      duration: 1000,
+    });
+  };
+
   const copyAllSummaries = async () => {
     const allSummaries = tabs
       .map((tab) => {
@@ -151,6 +166,7 @@ const Index = () => {
             onCopyAll={copyAllSummaries}
             onTabNameChange={handleTabNameChange}
             onToggleEdit={toggleEditTabName}
+            onDeleteTab={handleDeleteTab}
           />
 
           <MarketingSection />
