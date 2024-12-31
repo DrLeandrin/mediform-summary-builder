@@ -110,7 +110,7 @@ export function generateSummary(data: FormData): string {
   const sinaisVitais = [];
   if (data.sinaisVitais.fr) sinaisVitais.push(`FR: ${data.sinaisVitais.fr}`);
   if (data.sinaisVitais.fc) sinaisVitais.push(`FC: ${data.sinaisVitais.fc}`);
-  if (data.sinaisVitais.satO2) sinaisVitais.push(`SatO2: ${data.sinaisVitais.satO2}`);
+  if (data.sinaisVitais.sato2) sinaisVitais.push(`SatO2: ${data.sinaisVitais.sato2}%`);
   if (data.sinaisVitais.pas && data.sinaisVitais.pad) {
     sinaisVitais.push(`PA: ${data.sinaisVitais.pas}x${data.sinaisVitais.pad}`);
   }
