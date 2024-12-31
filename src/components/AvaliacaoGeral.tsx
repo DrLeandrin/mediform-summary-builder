@@ -35,7 +35,8 @@ const AvaliacaoGeral: React.FC<AvaliacaoGeralProps> = ({ formData, onChange }) =
           "Desorientado em tempo e espaço",
           "Sonolento",
           "Torporoso",
-          "Comatoso"
+          "Comatoso",
+          "Sedado"
         ]}
         value={formData.consciencia}
         label="Nível de Consciência e Orientação"

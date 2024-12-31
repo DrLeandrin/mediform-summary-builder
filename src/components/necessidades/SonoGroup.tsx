@@ -16,7 +16,8 @@ const SonoGroup: React.FC<SonoGroupProps> = ({
       name="sono"
       options={[
         "Nega alterações do sono",
-        "Refere não conseguir dormir"
+        "Refere não conseguir dormir",
+        "sono fragmentado"
       ]}
       value={value}
       label="Sono"

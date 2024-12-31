@@ -22,7 +22,8 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
         options={[
           "2 bulhas rítmicas normofonéticas, sem sopro",
           "2 bulhas arrítmicas",
-          "Bulhas hipofonéticas"
+          "Bulhas hipofonéticas",
+          "ausência de bulhas audíveis"
         ]}
         value={formData.auscultaCardiaca}
         label="Ausculta Cardíaca"
@@ -34,7 +35,8 @@ const AvaliacaoCardioAbdominal: React.FC<AvaliacaoCardioAbdominalProps> = ({
         options={[
           "Plano",
           "Globoso",
-          "Escavado"
+          "Escavado",
+          "em avental"
         ]}
         value={formData.abdomeInspecao}
         label="Abdome Inspeção"
