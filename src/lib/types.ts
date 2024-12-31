@@ -106,6 +106,16 @@ export const initialFormData: FormData = {
     "ureia": "",
     "creatinina": "",
     "pcr": "",
+    "mg": "",
+    "ca": "",
+    "tgo": "",
+    "tgp": "",
+    "faa": "",
+    "ggt": "",
+    "bt": "",
+    "bd": "",
+    "bi": "",
+    "inr": ""
   },
   gasometria: {
     "pH": "",
