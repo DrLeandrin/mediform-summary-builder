@@ -16,7 +16,7 @@ const RegularFieldsSection: React.FC<RegularFieldsSectionProps> = ({
 }) => {
   return (
     <>
-      {Object.entries(fields).map(([key, value]) => {
+      {fields && Object.entries(fields).map(([key, value]) => {
         if (!isVitalSign(key)) {
           return (
             <RegularField
