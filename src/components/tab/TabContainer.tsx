@@ -54,6 +54,13 @@ const TabContainer: React.FC<TabContainerProps> = ({
     onDeleteTab(tabId);
   };
 
+  const handleFormChange = (tabId: string, newData: Partial<FormData>) => {
+    if (newData.pacienteNome) {
+      onTabNameChange(tabId, newData.pacienteNome);
+    }
+    onFormChange(tabId, newData);
+  };
+
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
       <div className="flex items-center gap-2 mb-4">
@@ -79,7 +86,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
           <TabContent
             formData={tab.formData}
             summary={tab.summary}
-            onChange={(newData) => onFormChange(tab.id, newData)}
+            onChange={(newData) => handleFormChange(tab.id, newData)}
             onSummaryChange={(newSummary) => onSummaryChange(tab.id, newSummary)}
             onReset={() => onReset(tab.id)}
           />

@@ -15,7 +15,7 @@ export const useTabs = () => {
   const [tabs, setTabs] = useState<PatientTab[]>([
     {
       id: "1",
-      name: "Paciente 1",
+      name: "",
       formData: initialFormData,
       summary: "",
       isEditing: false,
@@ -63,7 +63,7 @@ export const useTabs = () => {
       ...prevTabs,
       {
         id: newId,
-        name: `Paciente ${newId}`,
+        name: "",
         formData: initialFormData,
         summary: "",
         isEditing: false,
