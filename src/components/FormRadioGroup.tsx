@@ -18,7 +18,7 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
   onChange,
 }) => {
   return (
-    <div className="p-4 rounded-lg border bg-card text-card-foreground">
+    <div className="p-4 rounded-lg border bg-card text-card-foreground shadow-sm">
       <h3 className="text-center font-bold uppercase mb-4">{label}</h3>
       <RadioGroup
         value={value}
