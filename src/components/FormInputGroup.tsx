@@ -77,16 +77,6 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
                 className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary mt-6"
                 title="Marcar como importante"
               />
-              {onRemove && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => onRemove(key)}
-                  className="mt-6"
-                >
-                  ×
-                </Button>
-              )}
             </div>
           );
         })}
