@@ -15,7 +15,8 @@ const AceitacaoDietaGroup: React.FC<AceitacaoDietaGroupProps> = ({
     <FormRadioGroup
       name="aceitacaoDieta"
       options={[
-        "Boa aceitação da dieta",
+        "Boa aceitação da dieta VO",
+        "Boa aceitação da dieta enteral",
         "Não aceitou dieta",
         "Efeitos indesejáveis à diéta"
       ]}
