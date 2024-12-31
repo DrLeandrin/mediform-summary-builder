@@ -64,16 +64,19 @@ const TabContent: React.FC<TabContentProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-end">
+      <div className="flex flex-col gap-2">
         <Button
           variant="outline"
           size="sm"
           onClick={handleSelectFirstOptions}
-          className="gap-2"
+          className="gap-2 self-end"
         >
           <Wand2 className="h-4 w-4" />
           Selecionar Opções Padrão
         </Button>
+        <p className="text-sm italic text-muted-foreground text-right">
+          Dica: Somente os campos utilizados aparecerão no sumário!
+        </p>
       </div>
 
       <div className="bg-card text-card-foreground rounded-lg shadow p-6">
