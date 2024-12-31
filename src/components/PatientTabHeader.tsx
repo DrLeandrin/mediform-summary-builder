@@ -43,7 +43,10 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
   };
 
   return (
-    <TabsTrigger value={id} className="relative group min-w-[100px] px-4">
+    <TabsTrigger 
+      value={id} 
+      className="relative group w-[150px] px-4 flex items-center justify-center"
+    >
       {isEditing ? (
         <Input
           className="w-24 h-6 px-1 py-0"
@@ -55,7 +58,7 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
         />
       ) : (
         <>
-          <span className="truncate">{name}</span>
+          <span className="truncate max-w-[120px]">{name}</span>
           {isActive && (
             <Button
               variant="ghost"
