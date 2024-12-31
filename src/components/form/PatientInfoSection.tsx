@@ -27,6 +27,12 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
     onInputChange("queixas", value ? `queixas: ${value}` : "");
   };
 
+  const handleTextAreaFocus = () => {
+    if (formData.queixas === "sem queixas") {
+      handleQueixasChange(false);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -57,6 +63,7 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
         <Textarea
           value={formData.queixas !== "sem queixas" ? formData.queixas.replace("queixas: ", "") : ""}
           onChange={handleQueixasTextChange}
+          onFocus={handleTextAreaFocus}
           placeholder="Digite as queixas do paciente..."
           className="w-full"
           disabled={formData.queixas === "sem queixas"}
