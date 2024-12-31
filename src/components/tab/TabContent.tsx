@@ -107,7 +107,7 @@ const TabContent: React.FC<TabContentProps> = ({
         className="fixed bottom-4 right-4 rounded-full shadow-lg hover:shadow-xl transition-shadow"
         onClick={scrollToSummary}
       >
-        <FileText className="h-4 w-4" />
+        <FileText className="h-4 w-4 text-muted-foreground" />
       </Button>
     </div>
   );
