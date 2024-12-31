@@ -30,7 +30,7 @@ const RassAssessment: React.FC<RassAssessmentProps> = ({ formData, onChange }) =
           "-5: Não responsivo"
         ]}
         value={formData.rassScale}
-        label="Escala RASS"
+        label=""
         onChange={(value) => handleRadioChange("rassScale", value)}
       />
     </div>
