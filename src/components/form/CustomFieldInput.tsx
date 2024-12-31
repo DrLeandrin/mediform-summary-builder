@@ -3,25 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 interface CustomFieldInputProps {
-  newFieldName: string;
-  onFieldNameChange: (value: string) => void;
-  onAddField: () => void;
+  value: string;
+  onChange: (value: string) => void;
+  onAdd: () => void;
 }
 
 const CustomFieldInput: React.FC<CustomFieldInputProps> = ({
-  newFieldName,
-  onFieldNameChange,
-  onAddField,
+  value,
+  onChange,
+  onAdd,
 }) => {
   return (
     <div className="flex gap-2 items-center">
       <Input
-        value={newFieldName}
-        onChange={(e) => onFieldNameChange(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         placeholder="Nome do novo campo"
         className="flex-grow"
       />
-      <Button type="button" onClick={onAddField} size="sm">
+      <Button type="button" onClick={onAdd} size="sm">
         Adicionar
       </Button>
     </div>
