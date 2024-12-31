@@ -22,6 +22,11 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
     }
   };
 
+  const handleQueixasTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    onInputChange("queixas", value ? `queixas: ${value}` : "");
+  };
+
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -50,8 +55,8 @@ const PatientInfoSection: React.FC<PatientInfoSectionProps> = ({
           <Label htmlFor="sem-queixas">Sem queixas</Label>
         </div>
         <Textarea
-          value={formData.queixas !== "sem queixas" ? formData.queixas : ""}
-          onChange={(e) => onInputChange("queixas", `queixas: ${e.target.value}`)}
+          value={formData.queixas !== "sem queixas" ? formData.queixas.replace("queixas: ", "") : ""}
+          onChange={handleQueixasTextChange}
           placeholder="Digite as queixas do paciente..."
           className="w-full"
           disabled={formData.queixas === "sem queixas"}
