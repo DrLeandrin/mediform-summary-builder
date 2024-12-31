@@ -11,6 +11,7 @@ interface PatientTabHeaderProps {
   onNameChange: (id: string, newName: string) => void;
   onToggleEdit: (id: string) => void;
   onDelete: (id: string) => void;
+  isActive?: boolean;
 }
 
 const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
@@ -20,6 +21,7 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
   onNameChange,
   onToggleEdit,
   onDelete,
+  isActive = false,
 }) => {
   const [inputValue, setInputValue] = useState(name);
 
@@ -54,17 +56,19 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
       ) : (
         <>
           <span className="truncate">{name}</span>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-4 w-4 absolute right-1 opacity-0 group-hover:opacity-100 transition-opacity"
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete(id);
-            }}
-          >
-            <Trash2 className="h-3 w-3 text-destructive" />
-          </Button>
+          {isActive && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-4 w-4 absolute right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(id);
+              }}
+            >
+              <Trash2 className="h-3 w-3 text-destructive" />
+            </Button>
+          )}
         </>
       )}
     </TabsTrigger>

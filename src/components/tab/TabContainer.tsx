@@ -67,6 +67,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
               onNameChange={onTabNameChange}
               onToggleEdit={onToggleEdit}
               onDelete={handleDeleteTab}
+              isActive={tab.id === activeTab}
             />
           ))}
         </TabsList>
