@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
@@ -23,6 +23,13 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
   step,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
+
+  // Reset the checkbox state when the value is reset
+  useEffect(() => {
+    if (!value) {
+      setIsMarked(false);
+    }
+  }, [value]);
 
   const handleValueChange = (newValue: string) => {
     const cleanValue = newValue.replace(/[(!)]*/g, '');
