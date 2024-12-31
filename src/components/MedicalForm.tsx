@@ -2,16 +2,10 @@ import React, { useCallback } from "react";
 import { FormData } from "@/lib/types";
 import FormDevicesGroup from "./FormDevicesGroup";
 import FormMedicalConductGroup from "./FormMedicalConductGroup";
-import AvaliacaoGeral from "./AvaliacaoGeral";
-import AvaliacaoRespiratoria from "./AvaliacaoRespiratoria";
-import AvaliacaoCardioAbdominal from "./AvaliacaoCardioAbdominal";
-import AvaliacaoNeurologica from "./AvaliacaoNeurologica";
-import AvaliacaoFisica from "./AvaliacaoFisica";
-import AvaliacaoNecessidades from "./AvaliacaoNecessidades";
 import PatientInfoSection from "./form/PatientInfoSection";
 import PhysicalExamSection from "./form/PhysicalExamSection";
 import VitalsAndLabsSection from "./form/VitalsAndLabsSection";
-import GlasgowAssessment from "./GlasgowAssessment";
+import AssessmentSections from "./assessment/AssessmentSections";
 
 interface MedicalFormProps {
   formData: FormData;
@@ -58,13 +52,7 @@ const MedicalForm: React.FC<MedicalFormProps> = ({ formData, onChange }) => {
         onInputChange={handleInputChange} 
       />
 
-      <AvaliacaoGeral formData={formData} onChange={onChange} />
-      <GlasgowAssessment formData={formData} onChange={onChange} />
-      <AvaliacaoRespiratoria formData={formData} onChange={onChange} />
-      <AvaliacaoCardioAbdominal formData={formData} onChange={onChange} />
-      <AvaliacaoNeurologica formData={formData} onChange={onChange} />
-      <AvaliacaoFisica formData={formData} onChange={onChange} />
-      <AvaliacaoNecessidades formData={formData} onChange={onChange} />
+      <AssessmentSections formData={formData} onChange={onChange} />
 
       <PhysicalExamSection 
         formData={formData} 
