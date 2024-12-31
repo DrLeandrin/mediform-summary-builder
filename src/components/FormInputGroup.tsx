@@ -50,7 +50,7 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   };
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 p-4 rounded-lg border bg-card text-card-foreground shadow-sm", className)}>
       <h3 className="text-lg font-semibold">{title}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Object.entries(fields).map(([key, value]) => (
