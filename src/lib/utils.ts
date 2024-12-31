@@ -58,7 +58,7 @@ export function generateSummary(data: FormData): string {
     data.humorAfeto,
     data.perfusaoPeriferica,
     data.acompanhante,
-    data.queixas
+    data.queixas && data.queixas !== "sem queixas" ? data.queixas : data.queixas
   );
 
   const linha1 = linha1Parts.filter(Boolean).join(", ");
