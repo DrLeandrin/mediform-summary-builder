@@ -15,7 +15,7 @@ export const useTabs = () => {
   const [tabs, setTabs] = useState<PatientTab[]>([
     {
       id: "1",
-      name: "",
+      name: "Paciente 1",
       formData: initialFormData,
       summary: "",
       isEditing: false,
@@ -63,7 +63,7 @@ export const useTabs = () => {
       ...prevTabs,
       {
         id: newId,
-        name: "",
+        name: `Paciente ${newId}`,
         formData: initialFormData,
         summary: "",
         isEditing: false,
@@ -86,7 +86,12 @@ export const useTabs = () => {
   };
 
   const handleTabNameChange = (tabId: string, newName: string) => {
-    if (!newName.trim()) return;
+    if (!newName.trim()) {
+      const tab = tabs.find(t => t.id === tabId);
+      if (tab) {
+        newName = `Paciente ${tabId}`;
+      }
+    }
     
     setTabs((prevTabs) =>
       prevTabs.map((tab) =>
