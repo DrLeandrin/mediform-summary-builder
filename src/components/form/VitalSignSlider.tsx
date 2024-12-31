@@ -25,19 +25,17 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
   const [isMarked, setIsMarked] = useState(false);
 
   const handleValueChange = (newValue: string) => {
-    const cleanValue = newValue.replace(/[%(!)]*/g, '');
-    const formattedValue = id === 'sato2' ? `${cleanValue}%` : cleanValue;
-    onChange(isMarked ? `${formattedValue}(!)` : formattedValue);
+    const cleanValue = newValue.replace(/[(!)]*/g, '');
+    onChange(isMarked ? `${cleanValue}(!)` : cleanValue);
   };
 
   const handleMarkChange = (checked: boolean) => {
     setIsMarked(checked);
-    const cleanValue = value.replace(/[%(!)]*/g, '');
-    const formattedValue = id === 'sato2' ? `${cleanValue}%` : cleanValue;
-    onChange(checked ? `${formattedValue}(!)` : formattedValue);
+    const cleanValue = value.replace(/[(!)]*/g, '');
+    onChange(checked ? `${cleanValue}(!)` : cleanValue);
   };
 
-  const displayValue = value.replace(/[%(!)]*/g, '');
+  const displayValue = value.replace(/[(!)]*/g, '');
 
   return (
     <div className="space-y-2">
