@@ -7,6 +7,7 @@ export interface FormData {
   glasgowOcular: string;
   glasgowVerbal: string;
   glasgowMotora: string;
+  rassScale: string;
   temperatura: string;
   freqRespiratoria: string;
   torax: string;
@@ -49,6 +50,7 @@ export const initialFormData: FormData = {
   glasgowOcular: "",
   glasgowVerbal: "",
   glasgowMotora: "",
+  rassScale: "",
   temperatura: "",
   freqRespiratoria: "",
   torax: "",

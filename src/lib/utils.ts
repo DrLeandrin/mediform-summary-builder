@@ -39,6 +39,11 @@ export function generateSummary(data: FormData): string {
     linha1Parts.push(`Glasgow ${glasgow.total} pts${glasgow.components}`);
   }
 
+  // Add RASS scale if available
+  if (data.rassScale) {
+    linha1Parts.push(`RASS ${data.rassScale}`);
+  }
+
   // Add remaining first line items
   linha1Parts.push(
     data.palidez,

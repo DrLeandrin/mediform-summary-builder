@@ -2,6 +2,7 @@ import React from "react";
 import { FormData } from "@/lib/types";
 import AvaliacaoGeral from "../AvaliacaoGeral";
 import GlasgowAssessment from "../GlasgowAssessment";
+import RassAssessment from "../RassAssessment";
 import AvaliacaoRespiratoria from "../AvaliacaoRespiratoria";
 import AvaliacaoCardioAbdominal from "../AvaliacaoCardioAbdominal";
 import AvaliacaoNeurologica from "../AvaliacaoNeurologica";
@@ -20,7 +21,10 @@ const AssessmentSections: React.FC<AssessmentSectionsProps> = ({
   return (
     <>
       <AvaliacaoGeral formData={formData} onChange={onChange} />
-      <GlasgowAssessment formData={formData} onChange={onChange} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <GlasgowAssessment formData={formData} onChange={onChange} />
+        <RassAssessment formData={formData} onChange={onChange} />
+      </div>
       <AvaliacaoRespiratoria formData={formData} onChange={onChange} />
       <AvaliacaoCardioAbdominal formData={formData} onChange={onChange} />
       <AvaliacaoNeurologica formData={formData} onChange={onChange} />
