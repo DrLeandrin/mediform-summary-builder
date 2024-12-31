@@ -14,7 +14,7 @@ const GlasgowAssessment: React.FC<GlasgowAssessmentProps> = ({ formData, onChang
 
   return (
     <div className="p-4 rounded-lg border bg-card text-card-foreground">
-      <h3 className="text-center font-bold uppercase mb-4">Escala de Glasgow</h3>
+      <h3 className="text-center font-bold uppercase mb-4">Glasgow</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <FormRadioGroup
           name="glasgowOcular"
