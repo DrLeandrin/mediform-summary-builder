@@ -18,7 +18,8 @@ const UrinaGroup: React.FC<UrinaGroupProps> = ({
         "Nega alteração do Hábito Urinário",
         "Refere disuria",
         "Refere oliguria",
-        "Refere anuria"
+        "Refere anuria",
+        "SVD pervia com débito em reservatório"
       ]}
       value={value}
       label="Urina"
