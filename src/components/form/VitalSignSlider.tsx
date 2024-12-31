@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
@@ -22,6 +22,20 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
   max,
   step,
 }) => {
+  const [isMarked, setIsMarked] = useState(false);
+
+  const handleValueChange = (newValue: string) => {
+    onChange(isMarked ? `${newValue}(!)` : newValue);
+  };
+
+  const handleMarkChange = (checked: boolean) => {
+    setIsMarked(checked);
+    const valueWithoutMark = value.replace("(!)", "");
+    onChange(checked ? `${valueWithoutMark}(!)` : valueWithoutMark);
+  };
+
+  const displayValue = value.replace("(!)", "");
+
   return (
     <div className="space-y-2">
       <Label htmlFor={id} className="text-foreground">
@@ -34,21 +48,28 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
             min={min}
             max={max}
             step={step}
-            value={[Number(value) || min]}
-            onValueChange={(vals) => onChange(vals[0].toString())}
+            value={[Number(displayValue) || min]}
+            onValueChange={(vals) => handleValueChange(vals[0].toString())}
           />
         </div>
         <div className="w-20">
           <Input
             type="number"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
+            value={displayValue}
+            onChange={(e) => handleValueChange(e.target.value)}
             className="text-right bg-background text-foreground"
             min={min}
             max={max}
             step={step}
           />
         </div>
+        <input
+          type="checkbox"
+          checked={isMarked}
+          onChange={(e) => handleMarkChange(e.target.checked)}
+          className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+          title="Marcar como importante"
+        />
       </div>
     </div>
   );
