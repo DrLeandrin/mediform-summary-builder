@@ -24,7 +24,6 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
 }) => {
   const [isMarked, setIsMarked] = useState(false);
 
-  // Reset the checkbox state when the value is reset
   useEffect(() => {
     if (!value) {
       setIsMarked(false);
@@ -46,9 +45,18 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
 
   return (
     <div className="space-y-2">
-      <Label htmlFor={id} className="text-foreground">
-        {label}
-      </Label>
+      <div className="flex items-center justify-between">
+        <Label htmlFor={id} className="text-foreground">
+          {label}
+        </Label>
+        <input
+          type="checkbox"
+          checked={isMarked}
+          onChange={(e) => handleMarkChange(e.target.checked)}
+          className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+          title="Marcar como importante"
+        />
+      </div>
       <div className="flex items-center space-x-4">
         <div className="flex-grow">
           <Slider
@@ -71,13 +79,6 @@ const VitalSignSlider: React.FC<VitalSignSliderProps> = ({
             step={step}
           />
         </div>
-        <input
-          type="checkbox"
-          checked={isMarked}
-          onChange={(e) => handleMarkChange(e.target.checked)}
-          className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
-          title="Marcar como importante"
-        />
       </div>
     </div>
   );
