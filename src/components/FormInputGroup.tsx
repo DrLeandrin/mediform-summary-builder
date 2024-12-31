@@ -1,10 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
+import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 import CustomFieldInput from "./form/CustomFieldInput";
-import VitalSignsSection from "./form/VitalSignsSection";
-import RegularFieldsSection from "./form/RegularFieldsSection";
+import RegularField from "./form/RegularField";
+import { cn } from "@/lib/utils";
 
 interface FormInputGroupProps {
   title: string;
@@ -12,6 +11,7 @@ interface FormInputGroupProps {
   onChange: (key: string, value: string) => void;
   onRemove?: (key: string) => void;
   allowCustomFields?: boolean;
+  className?: string;
 }
 
 const FormInputGroup: React.FC<FormInputGroupProps> = ({
@@ -20,86 +20,75 @@ const FormInputGroup: React.FC<FormInputGroupProps> = ({
   onChange,
   onRemove,
   allowCustomFields = false,
+  className,
 }) => {
   const [newFieldName, setNewFieldName] = useState("");
-  const [showAddField, setShowAddField] = useState(false);
+  const [markedFields, setMarkedFields] = useState<Record<string, boolean>>({});
 
-  const getSliderConfig = useCallback((key: string) => {
-    switch (key.toLowerCase()) {
-      case "fr":
-        return { min: 0, max: 40, step: 1, label: "FR (rpm)" };
-      case "fc":
-        return { min: 40, max: 200, step: 1, label: "FC (bpm)" };
-      case "sato2":
-        return { min: 0, max: 100, step: 1, label: "SatO2 (%)" };
-      case "pas":
-        return { min: 40, max: 250, step: 1, label: "PAS (mmHg)" };
-      case "pad":
-        return { min: 0, max: 150, step: 1, label: "PAD (mmHg)" };
-      case "dextro":
-        return { min: 0, max: 600, step: 1, label: "Dextro (mg/dL)" };
-      case "temperatura":
-        return { min: 35, max: 42, step: 0.1, label: "Temperatura (°C)" };
-      default:
-        return null;
-    }
-  }, []);
-
-  const isVitalSign = useCallback((key: string) => {
-    return ["fr", "fc", "sato2", "pas", "pad", "dextro", "temperatura"].includes(key.toLowerCase());
-  }, []);
-
-  const handleAddField = useCallback(() => {
+  const handleAddField = () => {
     if (newFieldName.trim()) {
       onChange(newFieldName.toLowerCase(), "");
       setNewFieldName("");
-      setShowAddField(false);
     }
-  }, [newFieldName, onChange]);
+  };
+
+  const handleFieldChange = (key: string, value: string) => {
+    onChange(key, markedFields[key] ? `${value}(!)` : value);
+  };
+
+  const handleMarkField = (key: string, checked: boolean) => {
+    setMarkedFields(prev => {
+      const newMarkedFields = { ...prev, [key]: checked };
+      
+      // Update the field value when marking/unmarking
+      const currentValue = fields[key];
+      const valueWithoutMark = currentValue.replace("(!)", "");
+      onChange(key, checked ? `${valueWithoutMark}(!)` : valueWithoutMark);
+      
+      return newMarkedFields;
+    });
+  };
 
   return (
-    <div className="space-y-4 p-4 border rounded-lg bg-card text-card-foreground">
-      <div className="flex justify-between items-center">
-        <Label className="text-lg font-medium">{title}</Label>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <VitalSignsSection
-          fields={fields}
-          onChange={onChange}
-          getSliderConfig={getSliderConfig}
-          isVitalSign={isVitalSign}
-        />
-        
-        <RegularFieldsSection
-          fields={fields}
-          onChange={onChange}
-          onRemove={onRemove}
-          isVitalSign={isVitalSign}
-        />
-        
-        {allowCustomFields && !showAddField && (
-          <div className="flex items-center justify-center h-[72px] border-2 border-dashed rounded-lg hover:border-primary/50 transition-colors">
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowAddField(true)}
-              className="h-full w-full flex items-center justify-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Adicionar Campo
-            </Button>
+    <div className={cn("space-y-4", className)}>
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {Object.entries(fields).map(([key, value]) => (
+          <div key={key} className="flex items-center gap-2">
+            <RegularField
+              label={key.toUpperCase()}
+              value={value.replace("(!)", "")}
+              onChange={(newValue) => handleFieldChange(key, newValue)}
+            />
+            <input
+              type="checkbox"
+              checked={markedFields[key] || false}
+              onChange={(e) => handleMarkField(key, e.target.checked)}
+              className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+              title="Marcar como importante"
+            />
           </div>
-        )}
+        ))}
       </div>
 
-      {showAddField && (
-        <CustomFieldInput
-          newFieldName={newFieldName}
-          onFieldNameChange={setNewFieldName}
-          onAddField={handleAddField}
-        />
+      {allowCustomFields && (
+        <div className="flex items-end gap-2">
+          <CustomFieldInput
+            value={newFieldName}
+            onChange={setNewFieldName}
+            onEnter={handleAddField}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleAddField}
+            className="flex items-center gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Adicionar Campo
+          </Button>
+        </div>
       )}
     </div>
   );
