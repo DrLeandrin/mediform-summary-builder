@@ -1,10 +1,18 @@
 import React from "react";
-import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { FormData } from "@/lib/types";
 import PatientTabHeader from "@/components/PatientTabHeader";
 import TabContent from "./TabContent";
 import ActionButtons from "./ActionButtons";
 import { toast } from "../ui/use-toast";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface PatientTab {
   id: string;
@@ -41,6 +49,8 @@ const TabContainer: React.FC<TabContainerProps> = ({
   onToggleEdit,
   onDeleteTab,
 }) => {
+  const isMobile = useIsMobile();
+
   const handleDeleteTab = (tabId: string) => {
     if (tabs.length === 1) {
       toast({
@@ -64,20 +74,37 @@ const TabContainer: React.FC<TabContainerProps> = ({
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
       <div className="flex items-center gap-2 mb-4">
-        <TabsList>
-          {tabs.map((tab) => (
-            <PatientTabHeader
-              key={tab.id}
-              id={tab.id}
-              name={tab.name}
-              isEditing={tab.isEditing}
-              onNameChange={onTabNameChange}
-              onToggleEdit={onToggleEdit}
-              onDelete={handleDeleteTab}
-              isActive={tab.id === activeTab}
-            />
-          ))}
-        </TabsList>
+        <div className="relative flex-1">
+          <Carousel
+            opts={{
+              align: "center",
+              containScroll: false,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-1">
+              {tabs.map((tab) => (
+                <CarouselItem key={tab.id} className="pl-1 basis-auto min-w-0">
+                  <PatientTabHeader
+                    id={tab.id}
+                    name={tab.name}
+                    isEditing={tab.isEditing}
+                    onNameChange={onTabNameChange}
+                    onToggleEdit={onToggleEdit}
+                    onDelete={handleDeleteTab}
+                    isActive={tab.id === activeTab}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {tabs.length > (isMobile ? 2 : 3) && (
+              <>
+                <CarouselPrevious className="left-0" />
+                <CarouselNext className="right-0" />
+              </>
+            )}
+          </Carousel>
+        </div>
         <ActionButtons onAddTab={onAddTab} onCopyAll={onCopyAll} />
       </div>
 

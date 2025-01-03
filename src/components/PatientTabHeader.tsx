@@ -3,6 +3,7 @@ import { TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PatientTabHeaderProps {
   id: string;
@@ -45,7 +46,10 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
   return (
     <TabsTrigger 
       value={id} 
-      className="relative group w-[150px] px-4 flex items-center justify-center"
+      className={cn(
+        "relative group w-[150px] px-4 flex items-center justify-center",
+        isActive && "bg-primary/10"
+      )}
     >
       {isEditing ? (
         <Input
