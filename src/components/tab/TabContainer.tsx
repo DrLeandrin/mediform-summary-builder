@@ -71,6 +71,9 @@ const TabContainer: React.FC<TabContainerProps> = ({
     onFormChange(tabId, newData);
   };
 
+  // Encontrar o índice da aba ativa
+  const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
+
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
       <div className="flex items-center justify-center gap-2 mb-4 relative px-8">
@@ -80,6 +83,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
               opts={{
                 align: "center",
                 containScroll: false,
+                startIndex: activeIndex,
               }}
               className="w-full"
             >
