@@ -117,7 +117,11 @@ const TabContainer: React.FC<TabContainerProps> = ({
       </div>
 
       {tabs.map((tab) => (
-        <TabsContent key={tab.id} value={tab.id}>
+        <TabsContent 
+          key={tab.id} 
+          value={tab.id}
+          className="data-[state=inactive]:animate-[slide-out-right_0.3s_ease-out] data-[state=active]:animate-[slide-in-right_0.3s_ease-out]"
+        >
           <TabContent
             formData={tab.formData}
             summary={tab.summary}
