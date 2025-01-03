@@ -47,8 +47,11 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
     <TabsTrigger 
       value={id} 
       className={cn(
-        "relative group w-[120px] px-2 flex items-center justify-center min-h-[32px]",
-        isActive && "bg-primary/10"
+        "relative group w-[120px] px-2 flex items-center justify-center min-h-[32px] transition-all duration-200",
+        "hover:bg-accent/50",
+        "data-[state=active]:shadow-sm data-[state=active]:bg-primary/10",
+        "border border-transparent hover:border-border",
+        "rounded-md"
       )}
     >
       {isEditing ? (
