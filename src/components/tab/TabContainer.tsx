@@ -71,19 +71,19 @@ const TabContainer: React.FC<TabContainerProps> = ({
     onFormChange(tabId, newData);
   };
 
-  // Encontrar o índice da aba ativa
   const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
 
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
-      <div className="flex items-center justify-center gap-2 mb-4 relative px-8">
-        <div className="flex-1 max-w-3xl">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-4 relative px-4 sm:px-8">
+        <div className="flex-1 max-w-3xl w-full">
           <TabsList className="w-full h-auto p-1 bg-transparent">
             <Carousel
               opts={{
                 align: "center",
                 containScroll: false,
                 startIndex: activeIndex,
+                dragFree: isMobile,
               }}
               className="w-full"
             >
@@ -102,7 +102,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              {tabs.length > (isMobile ? 2 : 3) && (
+              {!isMobile && tabs.length > 3 && (
                 <>
                   <CarouselPrevious className="absolute -left-8" />
                   <CarouselNext className="absolute -right-8" />
@@ -111,7 +111,7 @@ const TabContainer: React.FC<TabContainerProps> = ({
             </Carousel>
           </TabsList>
         </div>
-        <div className="absolute right-0">
+        <div className="mt-2 sm:mt-0 sm:absolute sm:right-0">
           <ActionButtons onAddTab={onAddTab} onCopyAll={onCopyAll} />
         </div>
       </div>
