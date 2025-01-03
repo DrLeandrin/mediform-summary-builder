@@ -73,8 +73,8 @@ const TabContainer: React.FC<TabContainerProps> = ({
 
   return (
     <Tabs value={activeTab} onValueChange={onTabChange} className="w-full">
-      <div className="flex items-center gap-2 mb-4">
-        <div className="relative flex-1">
+      <div className="flex items-center justify-center gap-2 mb-4 relative px-8">
+        <div className="flex-1 max-w-3xl">
           <TabsList className="w-full h-auto p-1 bg-transparent">
             <Carousel
               opts={{
@@ -100,14 +100,16 @@ const TabContainer: React.FC<TabContainerProps> = ({
               </CarouselContent>
               {tabs.length > (isMobile ? 2 : 3) && (
                 <>
-                  <CarouselPrevious className="left-0" />
-                  <CarouselNext className="right-0" />
+                  <CarouselPrevious className="absolute -left-8" />
+                  <CarouselNext className="absolute -right-8" />
                 </>
               )}
             </Carousel>
           </TabsList>
         </div>
-        <ActionButtons onAddTab={onAddTab} onCopyAll={onCopyAll} />
+        <div className="absolute right-0">
+          <ActionButtons onAddTab={onAddTab} onCopyAll={onCopyAll} />
+        </div>
       </div>
 
       {tabs.map((tab) => (

@@ -47,13 +47,13 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
     <TabsTrigger 
       value={id} 
       className={cn(
-        "relative group w-[150px] px-4 flex items-center justify-center",
+        "relative group w-[120px] px-2 flex items-center justify-center min-h-[32px]",
         isActive && "bg-primary/10"
       )}
     >
       {isEditing ? (
         <Input
-          className="w-24 h-6 px-1 py-0"
+          className="w-20 h-6 px-1 py-0"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onBlur={handleBlur}
@@ -62,12 +62,12 @@ const PatientTabHeader: React.FC<PatientTabHeaderProps> = ({
         />
       ) : (
         <>
-          <span className="truncate max-w-[120px]">{name}</span>
+          <span className="truncate max-w-[100px]">{name}</span>
           {isActive && (
             <Button
               variant="ghost"
               size="icon"
-              className="h-4 w-4 absolute right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="h-4 w-4 absolute -right-1 opacity-0 group-hover:opacity-100 transition-opacity"
               onClick={(e) => {
                 e.stopPropagation();
                 onDelete(id);
