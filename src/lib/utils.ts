@@ -68,10 +68,14 @@ export function generateSummary(data: FormData): string {
   const linha2Parts = [data.freqRespiratoria, data.torax];
   
   // Add ausculta pulmonar with locations if applicable
-  if (data.auscultaPulmonar === "MV+ SRA" && data.auscultaPulmonarLocations?.length > 0) {
-    linha2Parts.push(`${data.auscultaPulmonar} (${data.auscultaPulmonarLocations.join(", ")})`);
-  } else {
-    linha2Parts.push(data.auscultaPulmonar);
+  if (data.auscultaPulmonar) {
+    if (data.auscultaPulmonar === "MV+ SRA") {
+      linha2Parts.push(data.auscultaPulmonar);
+    } else if (data.auscultaPulmonarLocations && data.auscultaPulmonarLocations.length > 0) {
+      linha2Parts.push(`${data.auscultaPulmonar} em ${data.auscultaPulmonarLocations.join(", ")}`);
+    } else {
+      linha2Parts.push(data.auscultaPulmonar);
+    }
   }
   
   const linha2 = linha2Parts.filter(Boolean).join(", ");
