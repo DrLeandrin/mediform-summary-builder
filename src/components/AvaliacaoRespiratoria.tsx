@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import FormRadioGroup from "./FormRadioGroup";
 import { FormData } from "@/lib/types";
+import AuscultaPulmonarLocations from "./AuscultaPulmonarLocations";
 
 interface AvaliacaoRespiratoriaProps {
   formData: FormData;
@@ -13,6 +14,10 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
 }) => {
   const handleRadioChange = (name: keyof FormData, value: string) => {
     onChange({ [name]: value });
+  };
+
+  const handleLocationsChange = (locations: string[]) => {
+    onChange({ auscultaPulmonarLocations: locations });
   };
 
   return (
@@ -42,21 +47,29 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
         onChange={(value) => handleRadioChange("torax", value)}
       />
 
-      <FormRadioGroup
-        name="auscultaPulmonar"
-        options={[
-          "Murmúrio vesicular presente bilateralmente sem ruídos adventícios",
-          "Murmúrio vesicular diminuído",
-          "Roncos",
-          "Sibilos",
-          "Estertores finos",
-          "Estertores grossos",
-          "Ausência de murmúrio vesicular"
-        ]}
-        value={formData.auscultaPulmonar}
-        label="Ausculta Pulmonar"
-        onChange={(value) => handleRadioChange("auscultaPulmonar", value)}
-      />
+      <div className="space-y-4">
+        <FormRadioGroup
+          name="auscultaPulmonar"
+          options={[
+            "MV+ SRA",
+            "Murmúrio vesicular diminuído",
+            "Roncos",
+            "Sibilos",
+            "Estertores finos",
+            "Estertores grossos",
+            "Ausência de murmúrio vesicular"
+          ]}
+          value={formData.auscultaPulmonar}
+          label="Ausculta Pulmonar"
+          onChange={(value) => handleRadioChange("auscultaPulmonar", value)}
+        />
+        {formData.auscultaPulmonar === "MV+ SRA" && (
+          <AuscultaPulmonarLocations
+            selectedLocations={formData.auscultaPulmonarLocations || []}
+            onChange={handleLocationsChange}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -64,12 +64,17 @@ export function generateSummary(data: FormData): string {
   const linha1 = linha1Parts.filter(Boolean).join(", ");
   if (linha1) summary += linha1 + ".\n";
 
-  // Segunda linha
-  const linha2 = [
-    data.freqRespiratoria,
-    data.torax,
-    data.auscultaPulmonar
-  ].filter(Boolean).join(", ");
+  // Segunda linha - Ausculta Pulmonar
+  const linha2Parts = [data.freqRespiratoria, data.torax];
+  
+  // Add ausculta pulmonar with locations if applicable
+  if (data.auscultaPulmonar === "MV+ SRA" && data.auscultaPulmonarLocations?.length > 0) {
+    linha2Parts.push(`${data.auscultaPulmonar} (${data.auscultaPulmonarLocations.join(", ")})`);
+  } else {
+    linha2Parts.push(data.auscultaPulmonar);
+  }
+  
+  const linha2 = linha2Parts.filter(Boolean).join(", ");
   if (linha2) summary += "AP: " + linha2 + ".\n";
 
   // Terceira linha

@@ -12,29 +12,7 @@ export interface FormData {
   freqRespiratoria: string;
   torax: string;
   auscultaPulmonar: string;
-  auscultaCardiaca: string;
-  abdomeInspecao: string;
-  abdomePalpacao: string;
-  abdomeAusculta: string;
-  colaboracao: string;
-  contato: string;
-  fala: string;
-  pensamento: string;
-  humorAfeto: string;
-  aceitacaoMedicamentos: string;
-  perfusaoPeriferica: string;
-  cianose: string;
-  ictericia: string;
-  palidez: string;
-  hidratacao: string;
-  estadoNutricional: string;
-  mobilidade: string;
-  aceitacaoDieta: string;
-  sono: string;
-  urina: string;
-  habitoIntestinal: string;
-  intercorrencias: string;
-  acompanhante: string;
+  auscultaPulmonarLocations: string[];
   dispositivos: string[];
   condutaMedica: string[];
   sinaisVitais: Record<string, string>;
@@ -56,29 +34,7 @@ export const initialFormData: FormData = {
   freqRespiratoria: "",
   torax: "",
   auscultaPulmonar: "",
-  auscultaCardiaca: "",
-  abdomeInspecao: "",
-  abdomePalpacao: "",
-  abdomeAusculta: "",
-  colaboracao: "",
-  contato: "",
-  fala: "",
-  pensamento: "",
-  humorAfeto: "",
-  aceitacaoMedicamentos: "",
-  perfusaoPeriferica: "",
-  cianose: "",
-  ictericia: "",
-  palidez: "",
-  hidratacao: "",
-  estadoNutricional: "",
-  mobilidade: "",
-  aceitacaoDieta: "",
-  sono: "",
-  urina: "",
-  habitoIntestinal: "",
-  intercorrencias: "",
-  acompanhante: "",
+  auscultaPulmonarLocations: [],
   dispositivos: [],
   condutaMedica: [
     "Libero Prescrição Médica",
