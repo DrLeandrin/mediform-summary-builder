@@ -55,26 +55,28 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
       />
 
       <div className="space-y-4">
-        <FormRadioGroup
-          name="auscultaPulmonar"
-          options={[
-            "MV+ SRA",
-            "Murmúrio vesicular diminuído",
-            "Roncos",
-            "Sibilos",
-            "Estertores finos",
-            "Estertores grossos",
-            "Ausência de murmúrio vesicular"
-          ]}
-          value={formData.auscultaPulmonar}
-          label="Ausculta Pulmonar"
-          onChange={(value) => handleRadioChange("auscultaPulmonar", value)}
-        />
-        <AuscultaPulmonarLocations
-          selectedLocations={formData.auscultaPulmonarLocations || []}
-          onChange={handleLocationsChange}
-          disabled={formData.auscultaPulmonar === "MV+ SRA"}
-        />
+        <div className="space-y-0">
+          <FormRadioGroup
+            name="auscultaPulmonar"
+            options={[
+              "MV+ SRA",
+              "Murmúrio vesicular diminuído",
+              "Roncos",
+              "Sibilos",
+              "Estertores finos",
+              "Estertores grossos",
+              "Ausência de murmúrio vesicular"
+            ]}
+            value={formData.auscultaPulmonar}
+            label="Ausculta Pulmonar"
+            onChange={(value) => handleRadioChange("auscultaPulmonar", value)}
+          />
+          <AuscultaPulmonarLocations
+            selectedLocations={formData.auscultaPulmonarLocations || []}
+            onChange={handleLocationsChange}
+            disabled={formData.auscultaPulmonar === "MV+ SRA"}
+          />
+        </div>
       </div>
     </div>
   );
