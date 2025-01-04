@@ -22,7 +22,7 @@ const AuscultaPulmonarLocations: React.FC<AuscultaPulmonarLocationsProps> = ({
   ];
 
   return (
-    <div className={`ml-6 space-y-2 ${disabled ? 'opacity-50' : ''}`}>
+    <div className={`space-y-2 mt-2 ${disabled ? 'opacity-50' : ''}`}>
       <Label className="text-sm font-medium">Localização:</Label>
       <div className="grid grid-cols-2 gap-4">
         {locations.map((location) => (
