@@ -5,11 +5,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface AuscultaPulmonarLocationsProps {
   selectedLocations: string[];
   onChange: (locations: string[]) => void;
+  disabled?: boolean;
 }
 
 const AuscultaPulmonarLocations: React.FC<AuscultaPulmonarLocationsProps> = ({
   selectedLocations,
   onChange,
+  disabled = false,
 }) => {
   const locations = [
     "base direita",
@@ -20,7 +22,7 @@ const AuscultaPulmonarLocations: React.FC<AuscultaPulmonarLocationsProps> = ({
   ];
 
   return (
-    <div className="ml-6 space-y-2">
+    <div className={`ml-6 space-y-2 ${disabled ? 'opacity-50' : ''}`}>
       <Label className="text-sm font-medium">Localização:</Label>
       <div className="grid grid-cols-2 gap-4">
         {locations.map((location) => (
@@ -29,13 +31,21 @@ const AuscultaPulmonarLocations: React.FC<AuscultaPulmonarLocationsProps> = ({
               id={location}
               checked={selectedLocations.includes(location)}
               onCheckedChange={(checked) => {
-                const newLocations = checked
-                  ? [...selectedLocations, location]
-                  : selectedLocations.filter((l) => l !== location);
-                onChange(newLocations);
+                if (!disabled) {
+                  const newLocations = checked
+                    ? [...selectedLocations, location]
+                    : selectedLocations.filter((l) => l !== location);
+                  onChange(newLocations);
+                }
               }}
+              disabled={disabled}
             />
-            <Label htmlFor={location} className="text-sm">{location}</Label>
+            <Label 
+              htmlFor={location} 
+              className={`text-sm ${disabled ? 'cursor-not-allowed' : ''}`}
+            >
+              {location}
+            </Label>
           </div>
         ))}
       </div>

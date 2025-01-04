@@ -13,7 +13,14 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
   onChange,
 }) => {
   const handleRadioChange = (name: keyof FormData, value: string) => {
-    onChange({ [name]: value });
+    if (name === "auscultaPulmonar" && value !== "MV+ SRA") {
+      onChange({ 
+        [name]: value,
+        auscultaPulmonarLocations: [] 
+      });
+    } else {
+      onChange({ [name]: value });
+    }
   };
 
   const handleLocationsChange = (locations: string[]) => {
@@ -63,12 +70,11 @@ const AvaliacaoRespiratoria: React.FC<AvaliacaoRespiratoriaProps> = ({
           label="Ausculta Pulmonar"
           onChange={(value) => handleRadioChange("auscultaPulmonar", value)}
         />
-        {formData.auscultaPulmonar === "MV+ SRA" && (
-          <AuscultaPulmonarLocations
-            selectedLocations={formData.auscultaPulmonarLocations || []}
-            onChange={handleLocationsChange}
-          />
-        )}
+        <AuscultaPulmonarLocations
+          selectedLocations={formData.auscultaPulmonarLocations || []}
+          onChange={handleLocationsChange}
+          disabled={formData.auscultaPulmonar !== "MV+ SRA"}
+        />
       </div>
     </div>
   );
