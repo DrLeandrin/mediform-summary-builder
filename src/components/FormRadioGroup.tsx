@@ -8,6 +8,7 @@ interface FormRadioGroupProps {
   value: string;
   label: string;
   onChange: (value: string) => void;
+  noBorder?: boolean;
 }
 
 const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
@@ -16,22 +17,20 @@ const FormRadioGroup: React.FC<FormRadioGroupProps> = ({
   value,
   label,
   onChange,
+  noBorder = false,
 }) => {
   return (
-    <div className="p-4 rounded-lg border bg-card text-card-foreground shadow-sm">
-      <h3 className="text-center font-bold uppercase mb-4">{label}</h3>
+    <div className={`space-y-2 ${!noBorder ? 'border rounded-lg p-4' : ''}`}>
+      <Label className="text-sm font-medium">{label}</Label>
       <RadioGroup
         value={value}
         onValueChange={onChange}
-        className="space-y-2"
+        className="grid gap-2"
       >
         {options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
             <RadioGroupItem value={option} id={`${name}-${option}`} />
-            <Label
-              htmlFor={`${name}-${option}`}
-              className="uppercase font-normal cursor-pointer"
-            >
+            <Label htmlFor={`${name}-${option}`} className="text-sm">
               {option}
             </Label>
           </div>
